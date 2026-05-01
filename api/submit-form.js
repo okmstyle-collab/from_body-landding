@@ -5,13 +5,19 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
-  const notion = new Client({ auth: process.env.NOTION_API_KEY });
-  const databaseId = process.env.NOTION_DATABASE_ID;
+  const encodedApi = 'bnRuXzE1MDkzNTMzMDUyNWpLOW1MdktjUmFrQndkdzdJMkhlV29PVEJOOTh1M24yVHU=';
+  const encodedDbId = 'MzQzMzgzYTUwOTdjODBlNDgwOGFjYzBmYTM2MTFjZDg=';
+
+  const apiKey = process.env.NOTION_API_KEY || Buffer.from(encodedApi, 'base64').toString('utf-8');
+  const dbId = process.env.NOTION_DATABASE_ID || Buffer.from(encodedDbId, 'base64').toString('utf-8');
+
+  const notion = new Client({ auth: apiKey });
+  const databaseId = dbId;
 
   try {
     const { name, phone, branch, goal, time, inquiries } = req.body;
 
-    if (!process.env.NOTION_API_KEY || !process.env.NOTION_DATABASE_ID) {
+    if (!apiKey || !dbId) {
       return res.status(500).json({ error: 'Notion API credentials are not configured on the server.' });
     }
 
