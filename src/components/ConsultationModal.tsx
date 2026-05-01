@@ -114,9 +114,9 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                     <label className="text-sm font-bold text-gray-700">희망 지점 <span className="text-brand-point">*</span></label>
                     <select required name="branch" className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-point focus:ring-1 focus:ring-brand-point outline-none transition-all font-medium appearance-none bg-white">
                       <option value="">지점을 선택해주세요</option>
-                      <option value="songdo">송도점</option>
-                      <option value="jakjeon">작전점</option>
-                      <option value="bupyeong">부평점</option>
+                      <option value="송도점">송도점</option>
+                      <option value="작전점">작전점</option>
+                      <option value="부평점">부평점</option>
                     </select>
                   </div>
 
@@ -124,11 +124,11 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                     <label className="text-sm font-bold text-gray-700">운동 목적 <span className="text-brand-point">*</span></label>
                     <select required name="goal" className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-point focus:ring-1 focus:ring-brand-point outline-none transition-all font-medium appearance-none bg-white">
                       <option value="">가장 큰 목적을 선택해주세요</option>
-                      <option value="diet">다이어트</option>
-                      <option value="muscle">근력증가</option>
-                      <option value="posture">체형교정</option>
-                      <option value="bodyprofile">바디프로필</option>
-                      <option value="pain">통증케어</option>
+                      <option value="다이어트">다이어트</option>
+                      <option value="근력증가">근력증가</option>
+                      <option value="체형교정">체형교정</option>
+                      <option value="바디프로필">바디프로필</option>
+                      <option value="통증케어">통증케어</option>
                     </select>
                   </div>
 
