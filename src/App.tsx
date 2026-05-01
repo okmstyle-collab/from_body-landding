@@ -13,7 +13,8 @@ import {
   User,
   Activity
 } from "lucide-react";
-import { useState } from "react";
+import React, { useState } from "react";
+import ConsultationModal from "./components/ConsultationModal";
 
 /**
  * [헤드라인 대안 리스트]
@@ -24,6 +25,13 @@ import { useState } from "react";
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
+  const handleOpenForm = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsFormOpen(true);
+    setIsMenuOpen(false);
+  };
 
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
@@ -47,7 +55,7 @@ export default function App() {
             <a href="#system" className="hover:text-brand-point transition-colors">관리시스템</a>
             <a href="#programs" className="hover:text-brand-point transition-colors">프로그램</a>
             <a href="#faq" className="hover:text-brand-point transition-colors">FAQ</a>
-            <a href={ctaLink} className="btn-primary py-2 px-6 text-sm">무료 운동처방 신청</a>
+            <a href="#" onClick={handleOpenForm} className="btn-primary py-2 px-6 text-sm">무료 운동처방 신청</a>
           </div>
           <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X /> : <Menu />}
@@ -61,7 +69,7 @@ export default function App() {
             <a href="#system" onClick={() => setIsMenuOpen(false)}>관리시스템</a>
             <a href="#programs" onClick={() => setIsMenuOpen(false)}>프로그램</a>
             <a href="#faq" onClick={() => setIsMenuOpen(false)}>FAQ</a>
-            <a href={ctaLink} className="btn-primary">무료 운동처방 신청</a>
+            <a href="#" onClick={handleOpenForm} className="btn-primary">무료 운동처방 신청</a>
           </div>
         )}
       </nav>
@@ -100,7 +108,7 @@ export default function App() {
               당신의 몸이 변하는 과정을 데이터로 증명합니다.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href={ctaLink} className="btn-primary group">
+              <a href="#" onClick={handleOpenForm} className="btn-primary group">
                 무료 운동처방 신청하기
                 <ArrowRight className="inline-block ml-2 group-hover:translate-x-1 transition-transform" size={20} />
               </a>
@@ -176,7 +184,7 @@ export default function App() {
                 </li>
               ))}
             </ul>
-            <a href={ctaLink} className="btn-primary">프롬바디 문화 체험하기</a>
+            <a href="#" onClick={handleOpenForm} className="btn-primary">프롬바디 문화 체험하기</a>
           </div>
         </div>
       </section>
@@ -259,7 +267,7 @@ export default function App() {
                   </li>
                 ))}
               </ul>
-              <a href={ctaLink} className="btn-primary w-full shadow-brand-point/30">상담 후 시작하기</a>
+              <a href="#" onClick={handleOpenForm} className="btn-primary w-full shadow-brand-point/30">상담 후 시작하기</a>
             </motion.div>
 
             {/* Pilates */}
@@ -328,7 +336,7 @@ export default function App() {
             ))}
           </div>
           <div className="mt-20">
-            <a href={ctaLink} className="btn-primary">간편 상담 예약하기</a>
+            <a href="#" onClick={handleOpenForm} className="btn-primary">간편 상담 예약하기</a>
           </div>
         </div>
       </section>
@@ -373,7 +381,7 @@ export default function App() {
               오늘의 미룸이 내일의 통증을 만듭니다.<br/>
               선착순 무료 체험 혜택을 놓치지 마세요.
             </p>
-            <a href={ctaLink} className="btn-primary px-12 py-6 text-xl shadow-brand-point/40 uppercase tracking-widest italic">
+            <a href="#" onClick={handleOpenForm} className="btn-primary px-12 py-6 text-xl shadow-brand-point/40 uppercase tracking-widest italic">
               지금 바로 무료 체험 신청
             </a>
           </div>
@@ -396,9 +404,9 @@ export default function App() {
             <div>
               <div className="text-brand-point mb-4 font-black">CONTACT</div>
               <div className="flex gap-4 mb-4">
-                <a href={ctaLink} className="hover:text-brand-point bg-white p-2 rounded-full border shadow-sm"><Instagram size={20} /></a>
-                <a href={ctaLink} className="hover:text-brand-point bg-white p-2 rounded-full border shadow-sm"><MessageCircle size={20} /></a>
-                <a href={ctaLink} className="hover:text-brand-point bg-white p-2 rounded-full border shadow-sm"><Phone size={20} /></a>
+                <a href="#" className="hover:text-brand-point bg-white p-2 rounded-full border shadow-sm"><Instagram size={20} /></a>
+                <a href="#" className="hover:text-brand-point bg-white p-2 rounded-full border shadow-sm"><MessageCircle size={20} /></a>
+                <a href="#" className="hover:text-brand-point bg-white p-2 rounded-full border shadow-sm"><Phone size={20} /></a>
               </div>
               <p className="text-xs text-gray-400">© 2026 FROMBODY FITNESS. ALL RIGHTS RESERVED.</p>
             </div>
@@ -408,12 +416,14 @@ export default function App() {
 
       {/* Floating CTA Mobile */}
       <a 
-        href={ctaLink} 
+        href="#" onClick={handleOpenForm} 
         className="md:hidden fixed bottom-6 right-6 z-[60] bg-brand-point text-white font-black p-4 rounded-full shadow-2xl flex items-center gap-2 group italic uppercase tracking-tighter"
       >
         <CreditCard size={20} />
         무료체험 신청
       </a>
+
+      <ConsultationModal isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />
     </div>
   );
 }
