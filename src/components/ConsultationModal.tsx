@@ -10,14 +10,39 @@ interface ConsultationModalProps {
 export default function ConsultationModal({ isOpen, onClose }: ConsultationModalProps) {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // 실제 폼 전송 API 연동은 이곳에서 처리합니다.
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      onClose();
-    }, 2000);
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get("name"),
+      phone: formData.get("phone"),
+      branch: formData.get("branch"),
+      goal: formData.get("goal"),
+      experience: formData.get("experience"),
+      time: formData.get("time"),
+      inquiries: formData.get("inquiries"),
+    };
+
+    try {
+      const response = await fetch("http://localhost:3001/api/submit-form", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) throw new Error("API 연동 오류");
+
+      setIsSubmitted(true);
+      setTimeout(() => {
+        setIsSubmitted(false);
+        onClose();
+      }, 2000);
+    } catch (error) {
+      console.error(error);
+      alert("전송 중 오류가 발생했습니다. 나중에 다시 시도해주세요.");
+    }
   };
 
   return (
@@ -78,17 +103,17 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-1.5">
                       <label className="text-sm font-bold text-gray-700">이름 <span className="text-brand-point">*</span></label>
-                      <input required type="text" placeholder="홍길동" className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-point focus:ring-1 focus:ring-brand-point outline-none transition-all font-medium" />
+                      <input required name="name" type="text" placeholder="홍길동" className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-point focus:ring-1 focus:ring-brand-point outline-none transition-all font-medium" />
                     </div>
                     <div className="space-y-1.5">
                       <label className="text-sm font-bold text-gray-700">연락처 <span className="text-brand-point">*</span></label>
-                      <input required type="tel" placeholder="010-0000-0000" className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-point focus:ring-1 focus:ring-brand-point outline-none transition-all font-medium" />
+                      <input required name="phone" type="tel" placeholder="010-0000-0000" className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-point focus:ring-1 focus:ring-brand-point outline-none transition-all font-medium" />
                     </div>
                   </div>
 
                   <div className="space-y-1.5">
                     <label className="text-sm font-bold text-gray-700">희망 지점 <span className="text-brand-point">*</span></label>
-                    <select required className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-point focus:ring-1 focus:ring-brand-point outline-none transition-all font-medium appearance-none bg-white">
+                    <select required name="branch" className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-point focus:ring-1 focus:ring-brand-point outline-none transition-all font-medium appearance-none bg-white">
                       <option value="">지점을 선택해주세요</option>
                       <option value="songdo">송도점</option>
                       <option value="jakjeon">작전점</option>
@@ -98,7 +123,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
 
                   <div className="space-y-1.5">
                     <label className="text-sm font-bold text-gray-700">운동 목적 <span className="text-brand-point">*</span></label>
-                    <select required className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-point focus:ring-1 focus:ring-brand-point outline-none transition-all font-medium appearance-none bg-white">
+                    <select required name="goal" className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-point focus:ring-1 focus:ring-brand-point outline-none transition-all font-medium appearance-none bg-white">
                       <option value="">가장 큰 목적을 선택해주세요</option>
                       <option value="diet">다이어트</option>
                       <option value="muscle">근력증가</option>
@@ -124,12 +149,12 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
 
                   <div className="space-y-1.5">
                     <label className="text-sm font-bold text-gray-700">상담 희망 시간 <span className="text-brand-point">*</span></label>
-                    <input required type="text" placeholder="예) 평일 오후 7시 이후, 주말 오전" className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-point focus:ring-1 focus:ring-brand-point outline-none transition-all font-medium" />
+                    <input required name="time" type="text" placeholder="예) 평일 오후 7시 이후, 주말 오전" className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-point focus:ring-1 focus:ring-brand-point outline-none transition-all font-medium" />
                   </div>
 
                   <div className="space-y-1.5">
                     <label className="text-sm font-bold text-gray-700">문의사항 (자유롭게 작성해주세요)</label>
-                    <textarea placeholder="궁금하신 점이나 추가로 남기고 싶은 말씀을 적어주세요." rows={3} className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-point focus:ring-1 focus:ring-brand-point outline-none transition-all font-medium resize-none custom-scrollbar"></textarea>
+                    <textarea name="inquiries" placeholder="궁금하신 점이나 추가로 남기고 싶은 말씀을 적어주세요." rows={3} className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-point focus:ring-1 focus:ring-brand-point outline-none transition-all font-medium resize-none custom-scrollbar"></textarea>
                   </div>
 
                   <div className="pt-2">
