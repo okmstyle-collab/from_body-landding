@@ -31,11 +31,7 @@ app.post('/api/submit-form', async (req, res) => {
           ],
         },
         '연락처': {
-          rich_text: [
-            {
-              text: { content: phone || '' },
-            },
-          ],
+          phone_number: phone || '',
         },
         '희망 지점': {
           select: { name: branch },
@@ -43,9 +39,7 @@ app.post('/api/submit-form', async (req, res) => {
         '운동 목적': {
           select: { name: goal },
         },
-        '운동 경험': {
-          select: { name: experience },
-        },
+
         '상담 희망 시간': {
           rich_text: [
             {

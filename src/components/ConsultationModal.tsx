@@ -18,7 +18,6 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
       phone: formData.get("phone"),
       branch: formData.get("branch"),
       goal: formData.get("goal"),
-      experience: formData.get("experience"),
       time: formData.get("time"),
       inquiries: formData.get("inquiries"),
     };
@@ -133,19 +132,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                     </select>
                   </div>
 
-                  <div className="space-y-1.5">
-                    <label className="text-sm font-bold text-gray-700">운동 경험 유무</label>
-                    <div className="grid grid-cols-3 gap-2">
-                      {['처음', '1년 미만', '1년 이상'].map((exp) => (
-                        <label key={exp} className="cursor-pointer">
-                          <input type="radio" name="experience" className="peer sr-only" value={exp} defaultChecked={exp === '처음'} />
-                          <div className="text-center px-2 py-3 rounded-lg border border-gray-200 peer-checked:border-brand-point peer-checked:bg-brand-point/5 peer-checked:text-brand-point font-bold text-sm text-gray-500 transition-all">
-                            {exp}
-                          </div>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
+
 
                   <div className="space-y-1.5">
                     <label className="text-sm font-bold text-gray-700">상담 희망 시간 <span className="text-brand-point">*</span></label>
