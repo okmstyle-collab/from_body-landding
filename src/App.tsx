@@ -1,0 +1,419 @@
+import { motion } from "motion/react";
+import { 
+  ChevronRight, 
+  MapPin, 
+  Phone, 
+  Instagram, 
+  MessageCircle, 
+  CheckCircle2, 
+  ArrowRight,
+  Menu,
+  X,
+  CreditCard,
+  User,
+  Activity
+} from "lucide-react";
+import { useState } from "react";
+
+/**
+ * [헤드라인 대안 리스트]
+ * 1. "할 땐 하고 놀 땐 노는, 당신을 위한 진짜 운동 파트너"
+ * 2. "인천 직장인들이 검증한 통증 해결의 정석, 프롬바디" (선택됨)
+ * 3. "당신의 인생 마지막 PT가 될 데이터 기반 맞춤 관리"
+ */
+
+export default function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const fadeIn = {
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.6 }
+  };
+
+  const ctaLink = "#"; // 나중에 상담신청 링크로 교체 예정
+
+  return (
+    <div className="flex flex-col w-full min-h-screen">
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+          <div className="font-black text-2xl tracking-tighter text-brand-point italic">
+            FROMBODY
+          </div>
+          <div className="hidden md:flex gap-8 font-medium text-sm items-center">
+            <a href="#problem" className="hover:text-brand-point transition-colors">운동고민</a>
+            <a href="#system" className="hover:text-brand-point transition-colors">관리시스템</a>
+            <a href="#programs" className="hover:text-brand-point transition-colors">프로그램</a>
+            <a href="#faq" className="hover:text-brand-point transition-colors">FAQ</a>
+            <a href={ctaLink} className="btn-primary py-2 px-6 text-sm">무료 운동처방 신청</a>
+          </div>
+          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            {isMenuOpen ? <X /> : <Menu />}
+          </button>
+        </div>
+        
+        {/* Mobile menu */}
+        {isMenuOpen && (
+          <div className="md:hidden bg-white px-6 py-8 flex flex-col gap-6 font-bold absolute w-full border-b shadow-xl">
+            <a href="#problem" onClick={() => setIsMenuOpen(false)}>운동고민</a>
+            <a href="#system" onClick={() => setIsMenuOpen(false)}>관리시스템</a>
+            <a href="#programs" onClick={() => setIsMenuOpen(false)}>프로그램</a>
+            <a href="#faq" onClick={() => setIsMenuOpen(false)}>FAQ</a>
+            <a href={ctaLink} className="btn-primary">무료 운동처방 신청</a>
+          </div>
+        )}
+      </nav>
+
+      {/* 01. Hero Section */}
+      {/* 심리: 호기심의 틈 & 주목 효과 */}
+      <section className="relative min-h-[90vh] flex items-center pt-20 overflow-hidden bg-brand-outer">
+        <div className="absolute inset-0 z-0 opacity-40">
+          <video 
+            autoPlay 
+            loop 
+            muted
+            playsInline 
+            className="w-full h-full object-cover"
+          >
+            <source src="/0501.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-3xl"
+          >
+            <div className="inline-block bg-brand-point text-white text-xs font-bold px-3 py-1 rounded-sm mb-6 tracking-widest uppercase">
+              10 Years of Trust in Incheon
+            </div>
+            <h1 className="text-5xl md:text-7xl font-black text-white leading-[1.1] text-balance mb-8">
+              인천에서 10년간 운영한<br/>
+              <span className="text-brand-point">가장 신뢰가는</span>,<br/>
+              프롬바디 피트니스
+            </h1>
+            <p className="text-xl text-gray-300 mb-10 leading-relaxed font-medium">
+              10년의 노하우는 배신하지 않습니다. 정밀한 측정과 체계적인 리포트로<br className="hidden md:block"/>
+              당신의 몸이 변하는 과정을 데이터로 증명합니다.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a href={ctaLink} className="btn-primary group">
+                무료 운동처방 신청하기
+                <ArrowRight className="inline-block ml-2 group-hover:translate-x-1 transition-transform" size={20} />
+              </a>
+              <div className="flex items-center gap-4 text-white/60 text-sm font-medium px-4">
+                <CheckCircle2 size={16} className="text-brand-point" /> 인바디 측정 및 1:1 상담 포함
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 02. Problem Section */}
+      {/* 심리: 부정 편향 - 고통을 구체적으로 명명 */}
+      <section id="problem" className="section-padding bg-gray-50 uppercase tracking-tighter">
+        <div className="max-w-4xl mx-auto text-center mb-16 px-4">
+          <motion.h2 {...fadeIn} className="text-3xl md:text-4xl font-black mb-6">
+            내 몸을 위한 투자가<br/>
+            <span className="text-brand-point">단순한 노동</span>이 되고 있지는 않나요?
+          </motion.h2>
+          <motion.p {...fadeIn} className="text-lg text-gray-600 font-medium">
+            3040 직장인이라면 한 번쯤 겪는 지긋지긋한 불편함들
+          </motion.p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {[
+            { tag: "Pain", title: "어깨와 허리의 묵직함", desc: "앉아만 있어도 몰려오는 통증, 파스나 마사지로는 한계가 있습니다." },
+            { tag: "Posture", title: "무너진 거울 속 실루엣", desc: "라운드 숄더와 거북목. 예쁜 옷을 입어도 왠지 모르게 태가 안 납니다." },
+            { tag: "Habit", title: "작심삼일 반복되는 운동", desc: "의욕만 앞선 등록. 결국 돈만 날리고 다시 제자리걸음인 일상." }
+          ].map((item, i) => (
+            <motion.div 
+              key={i} 
+              {...fadeIn} 
+              transition={{ delay: i * 0.1 }}
+              className="bg-white p-10 border-b-4 border-brand-point shadow-sm"
+            >
+              <div className="text-brand-point font-black text-sm mb-4">{item.tag}</div>
+              <h3 className="text-2xl font-black mb-4">{item.title}</h3>
+              <p className="text-gray-500 leading-relaxed font-medium">{item.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* 03. Brand Culture Section */}
+      {/* 심리: 아하! 모먼트 - "아, 이게 답이구나" */}
+      <section className="section-padding">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
+          <div className="w-full md:w-1/2">
+            <div className="placeholder h-[500px] w-full rounded-2xl grayscale" data-role="culture_image">
+              {/* [보완 필요] "할 땐 하고 놀 땐 놀자" 분위기가 느껴지는 지점 사진 */}
+              활기찬 센터 분위기 사진
+            </div>
+          </div>
+          <div className="w-full md:w-1/2">
+            <h2 className="text-4xl md:text-5xl font-black mb-8 leading-tight">
+              운동은 빡세게,<br/>
+              분위기는 즐겁게.<br/>
+              <span className="text-brand-point">그게 프롬바디니까.</span>
+            </h2>
+            <p className="text-lg text-gray-600 mb-8 leading-relaxed font-medium">
+              운동하러 가는 길이 스트레스가 되면 안 됩니다. <br/>
+              프롬바디는 활기찬 에너지가 흐르는 공간에서 트레이너와 파트너가 되어 함께 목표를 달성하는 문화를 지향합니다.
+            </p>
+            <ul className="space-y-4 mb-10">
+              {[
+                "어느 지점을 가도 동일한 직영 퀄리티",
+                "수업이 끝나도 이어지는 철저한 개인 관리",
+                "부담 없는 상담과 전문적인 트레이닝"
+              ].map((text, i) => (
+                <li key={i} className="flex items-center gap-3 font-bold text-gray-800">
+                  <CheckCircle2 className="text-brand-point" size={20} />
+                  {text}
+                </li>
+              ))}
+            </ul>
+            <a href={ctaLink} className="btn-primary">프롬바디 문화 체험하기</a>
+          </div>
+        </div>
+      </section>
+
+      {/* 04. System Section */}
+      {/* 심리: 노력 인식 효과 - 데이터 관리 강조 */}
+      <section id="system" className="section-padding bg-black text-white overflow-hidden relative">
+        <div className="absolute top-0 right-0 w-1/2 h-full opacity-20 pointer-events-none">
+          <div className="font-black text-[15rem] leading-none select-none text-white/5">SYSTEM</div>
+        </div>
+        <div className="max-w-7xl mx-auto relative z-10 text-center md:text-left">
+          <div className="flex flex-col md:flex-row items-center gap-16">
+            <div className="w-full md:w-1/2">
+              <span className="text-brand-point font-black tracking-widest mb-4 block uppercase">Exclusive Management</span>
+              <h2 className="text-4xl md:text-5xl font-black mb-8">
+                기대만 하는 것이 아니라<br/>
+                <span className="text-brand-point">데이터로 확인</span>하는 변화
+              </h2>
+              <div className="space-y-8">
+                <div className="flex gap-4 items-start text-left">
+                  <div className="bg-brand-point/10 p-3 rounded-lg"><Activity className="text-brand-point" size={24} /></div>
+                  <div>
+                    <h3 className="text-xl font-bold mb-2">노션 기반 프리미엄 리포트</h3>
+                    <p className="text-gray-400 font-medium">오늘의 운동 목표, 수행 능력 변화, 식단 기록까지 한눈에 확인하는 개인 대시보드를 제공합니다.</p>
+                  </div>
+                </div>
+                <div className="flex gap-4 items-start text-left">
+                  <div className="bg-brand-point/10 p-3 rounded-lg"><User className="text-brand-point" size={24} /></div>
+                  <div>
+                    <h3 className="text-xl font-bold mb-2">1:1 전담 마킹 시스템</h3>
+                    <p className="text-gray-400 font-medium">단순히 50분 수업으로 끝내지 않습니다. 수업 외 시간에 대한 피드백까지 전담 트레이너가 함께합니다.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="w-full md:w-1/2">
+              <div className="placeholder h-[400px] bg-white/5 rounded-xl border border-white/10" data-role="system_dashboard">
+                {/* [보완 필요] 노션 리포트 관리 대시보드 캡쳐 이미지 */}
+                투명한 회원 관리 리포트 대시보드
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 05. Service Section */}
+      {/* 심리: 미끼 효과 & 중앙 무대 효과 */}
+      <section id="programs" className="section-padding bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-black mb-6">최상의 결과를 위한<br/>프롬바디 프로그램</h2>
+            <p className="text-gray-500 font-medium italic">당신의 목적에 맞는 최적의 플랜을 제안합니다.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Health */}
+            <motion.div {...fadeIn} className="bg-white p-10 border border-gray-100 flex flex-col items-center text-center">
+              <div className="flex items-center justify-center p-4 rounded-full bg-gray-100 mb-6">
+                <MapPin size={32} className="text-gray-400" />
+              </div>
+              <h3 className="text-2xl font-black mb-4">헬스 (회원권)</h3>
+              <p className="text-gray-500 mb-8 font-medium">쾌적한 시설과 최신 기구를<br/>자유롭게 이용하는 실속 플랜</p>
+              <div className="mt-auto pt-6 border-t w-full text-sm text-gray-400 font-bold">센터 전체 기초 시설 이용 가능</div>
+            </motion.div>
+
+            {/* PT (Main) */}
+            <motion.div 
+              {...fadeIn} 
+              className="bg-white p-10 ring-4 ring-brand-point relative flex flex-col items-center text-center -translate-y-4 shadow-2xl"
+            >
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-point text-white text-xs font-black px-4 py-1 uppercase tracking-widest">Best Choice</div>
+              <div className="flex items-center justify-center p-4 rounded-full bg-brand-point/10 mb-6">
+                <Activity size={32} className="text-brand-point" />
+              </div>
+              <h3 className="text-2xl font-black mb-4">1:1 맞춤형 PT</h3>
+              <p className="text-gray-500 mb-8 font-medium">재활부터 통증 케어, 고강도 근력 증강까지<br/>오직 당신만을 위한 설계</p>
+              <ul className="text-left w-full space-y-3 mb-8">
+                {["체형 분석 기반 루틴 설계", "개인 대시보드 리포팅", "식단 및 생활 습관 서포트"].map((t, i) => (
+                  <li key={i} className="flex gap-2 text-sm font-bold text-gray-700">
+                    <CheckCircle2 size={16} className="text-brand-point shrink-0" /> {t}
+                  </li>
+                ))}
+              </ul>
+              <a href={ctaLink} className="btn-primary w-full shadow-brand-point/30">상담 후 시작하기</a>
+            </motion.div>
+
+            {/* Pilates */}
+            <motion.div {...fadeIn} className="bg-white p-10 border border-gray-100 flex flex-col items-center text-center">
+              <div className="flex items-center justify-center p-4 rounded-full bg-gray-100 mb-6">
+                <User size={32} className="text-gray-400" />
+              </div>
+              <h3 className="text-2xl font-black mb-4">기구 필라테스</h3>
+              <p className="text-gray-500 mb-8 font-medium">코어 강화와 유연성 극대화,<br/>여성을 위한 섬세한 교정 수업</p>
+              <div className="mt-auto pt-6 border-t w-full text-sm text-gray-400 font-bold">코어 집중 및 체형 교정 중심</div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* 06. Results/Proof Section */}
+      {/* 심리: 사회적 증거 & 후광 효과 */}
+      <section className="section-padding overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h2 className="text-4xl font-black mb-16">프롬바디가 증명한 변화들</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[1, 2, 3, 4].map(i => (
+              <div key={i} className="placeholder aspect-[3/4] group cursor-pointer" data-role={`before_after_${i}`}>
+                {/* [보완 필요] 실제 회원 변화 비포/애프너 사진 */}
+                변화 증명 데이터 {i}
+                <div className="absolute inset-0 bg-brand-point/80 text-white opacity-0 group-hover:opacity-100 flex items-center justify-center p-6 transition-opacity">
+                  <p className="font-black text-sm uppercase leading-tight italic">
+                    Weight -12kg<br/>
+                    Muscle +3kg<br/>
+                    Body Fat -8%
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-16 flex flex-wrap gap-8 justify-center items-center grayscale opacity-60">
+            <div className="font-black text-4xl">500+</div>
+            <div className="font-black text-4xl italic">FROMBODY</div>
+            <div className="font-black text-4xl tracking-tighter">FITNESS</div>
+            <div className="font-black text-4xl uppercase">Certified</div>
+          </div>
+        </div>
+      </section>
+
+      {/* 07. Process Section */}
+      {/* 심리: 목표 그라데이션 효과 - 6단계로 확장하여 신뢰도 강화 */}
+      <section className="section-padding bg-brand-outer text-white">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-black mb-16">프롬바디는 이렇게 시작됩니다</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-x-8 relative">
+            {[
+              { step: "01", title: "무료 신청", desc: "온라인 또는 전화로 간편 예약" },
+              { step: "02", title: "사전 설문", desc: "원활한 상담을 위한 컨디션 기반 설문" },
+              { step: "03", title: "시설투어", desc: "직접 보고 느끼고 결정하세요" },
+              { step: "04", title: "운동목적상담", desc: "목표에 맞는 방향을 함께 잡아드려요" },
+              { step: "05", title: "체험 수업", desc: "데이터 기반 맞춤형 운동 프로그램 진행" },
+              { step: "06", title: "운동진행", desc: "프롬바디와 함께 즐거운 여정의 시작" }
+            ].map((item, i) => (
+              <div key={i} className="relative z-10 flex flex-col items-center group">
+                <div className="w-20 h-20 bg-brand-point rounded-full flex items-center justify-center font-black text-2xl mb-6 shadow-xl shadow-brand-point/20 group-hover:scale-110 transition-transform duration-300">
+                  {item.step}
+                </div>
+                <h3 className="text-xl font-bold mb-2 italic">{item.title}</h3>
+                <p className="text-gray-400 text-sm font-medium px-4">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-20">
+            <a href={ctaLink} className="btn-primary">간편 상담 예약하기</a>
+          </div>
+        </div>
+      </section>
+
+      {/* 08. FAQ Section */}
+      {/* 심리: 반발감 효과 회피 & 손실 회피 */}
+      <section id="faq" className="section-padding bg-white">
+        <div className="max-w-3xl mx-auto px-4">
+          <h2 className="text-4xl font-black mb-12 text-center">자주 묻는 질문</h2>
+          <div className="space-y-6">
+            {[
+              { q: "운동을 한 번도 안 해봤는데 괜찮을까요?", a: "네, 대다수의 회원님이 프롬바디에서 운동을 처음 시작하십니다. 초점은 '잘 하는 것'이 아니라 '바르게 하는 것'부터 시작하므로 걱정하지 않으셔도 됩니다." },
+              { q: "PT 가격/회원권 가격은 어떻게 되나요?", a: "회권수와 기간에 따라 상이하며, 자세한 내용은 상담 시 투명하게 안내해 드립니다. 합리적인 가격으로 최상의 관리를 받으실 수 있도록 조율해 드립니다." },
+              { q: "주차는 가능한가요?", a: "네, 각 지점(작전/송도/부평 등) 모두 건물 내 지하 또는 지상 주차가 가능하여 편하게 방문하실 수 있습니다." },
+              { q: "체험은 어떻게 진행되나요? 당일 가입해야 하나요?", a: "당일 가입 강요는 절대 없습니다. 체험은 약 50분 내외로 진행되며, 직접 받아보시고 결정하시는 것을 권장합니다." },
+              { q: "다른 지점과 교차 이용 가능한가요?", a: "네, 프롬바디는 인천 지역 주요 거점에 직영 체제로 운영되므로, 지점 간 협의를 통해 편리한 연계 관리가 가능합니다." }
+            ].map((faq, i) => (
+              <details key={i} className="group border-b border-gray-100 pb-4 cursor-pointer">
+                <summary className="flex items-center justify-between font-bold text-lg list-none py-2 uppercase tracking-tighter">
+                  {faq.q}
+                  <ChevronRight size={18} className="group-open:rotate-90 transition-transform" />
+                </summary>
+                <p className="mt-4 text-gray-500 leading-relaxed font-medium">
+                  {faq.a}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 09. Footer / Final CTA */}
+      {/* 심리: 결핍 & 새 출발 효과 */}
+      <footer className="bg-gray-50 pt-20 pb-12 border-t">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-6xl font-black mb-8 italic uppercase tracking-tighter">
+              DO IT NOW,<br/>
+              CHANGE YOUR BODY.
+            </h2>
+            <p className="text-xl text-gray-600 mb-10 font-bold">
+              오늘의 미룸이 내일의 통증을 만듭니다.<br/>
+              선착순 무료 체험 혜택을 놓치지 마세요.
+            </p>
+            <a href={ctaLink} className="btn-primary px-12 py-6 text-xl shadow-brand-point/40 uppercase tracking-widest italic">
+              지금 바로 무료 체험 신청
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 pt-12 border-t text-sm font-bold opacity-80 uppercase tracking-tighter">
+            <div>
+              <div className="text-brand-point mb-4 font-black">LOCATIONS</div>
+              <ul className="space-y-4">
+                <li><span className="text-brand-point">송도점</span> 032)834-0401</li>
+                <li><span className="text-brand-point">작전점</span> 032)553-0401</li>
+                <li><span className="text-brand-point">부평점</span> 032)719-3336</li>
+              </ul>
+            </div>
+            <div>
+              <div className="text-brand-point mb-4 font-black">HOURS</div>
+              <p>평일 09:00 ~ 23:00</p>
+              <p>주말 10:00 ~ 18:00</p>
+              <p className="text-xs text-gray-400 mt-2">*공휴일 별도 공지</p>
+            </div>
+            <div>
+              <div className="text-brand-point mb-4 font-black">CONTACT</div>
+              <div className="flex gap-4 mb-4">
+                <a href={ctaLink} className="hover:text-brand-point bg-white p-2 rounded-full border shadow-sm"><Instagram size={20} /></a>
+                <a href={ctaLink} className="hover:text-brand-point bg-white p-2 rounded-full border shadow-sm"><MessageCircle size={20} /></a>
+                <a href={ctaLink} className="hover:text-brand-point bg-white p-2 rounded-full border shadow-sm"><Phone size={20} /></a>
+              </div>
+              <p className="text-xs text-gray-400">© 2026 FROMBODY FITNESS. ALL RIGHTS RESERVED.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      {/* Floating CTA Mobile */}
+      <a 
+        href={ctaLink} 
+        className="md:hidden fixed bottom-6 right-6 z-[60] bg-brand-point text-white font-black p-4 rounded-full shadow-2xl flex items-center gap-2 group italic uppercase tracking-tighter"
+      >
+        <CreditCard size={20} />
+        무료체험 신청
+      </a>
+    </div>
+  );
+}
