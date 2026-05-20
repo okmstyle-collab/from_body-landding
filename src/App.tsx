@@ -107,13 +107,18 @@ export default function App() {
               10년의 노하우는 배신하지 않습니다. 정밀한 측정과 체계적인 리포트로<br className="hidden md:block"/>
               당신의 몸이 변하는 과정을 데이터로 증명합니다.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a href="#" onClick={handleOpenForm} className="btn-primary group">
-                무료 운동처방 신청하기
-                <ArrowRight className="inline-block ml-2 group-hover:translate-x-1 transition-transform" size={20} />
-              </a>
-              <div className="flex items-center gap-4 text-white/60 text-sm font-medium px-4">
-                <CheckCircle2 size={16} className="text-brand-point" /> 인바디 측정 및 1:1 상담 포함
+            <div className="flex flex-col sm:flex-row gap-4 items-center">
+              <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                <a href="#" onClick={handleOpenForm} className="bg-white text-black px-8 py-4 rounded-full font-bold text-lg transition-transform hover:scale-105 active:scale-95 inline-block text-center shadow-lg group flex-1 sm:flex-none">
+                  방문예약하기
+                </a>
+                <a href="#" onClick={handleOpenForm} className="btn-primary group flex-1 sm:flex-none">
+                  무료운동 처방신청하기
+                  <ArrowRight className="inline-block ml-2 group-hover:translate-x-1 transition-transform" size={20} />
+                </a>
+              </div>
+              <div className="flex items-center gap-2 text-white/60 text-sm font-medium sm:ml-2">
+                <CheckCircle2 size={16} className="text-brand-point shrink-0" /> 인바디 측정 및 1:1 상담 포함
               </div>
             </div>
           </motion.div>
