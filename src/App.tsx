@@ -130,8 +130,8 @@ export default function App() {
       <section id="problem" className="section-padding bg-gray-50 uppercase tracking-tighter">
         <div className="max-w-4xl mx-auto text-center mb-16 px-4">
           <motion.h2 {...fadeIn} className="text-3xl md:text-4xl font-black mb-6">
-            내 몸을 위한 투자가<br/>
-            <span className="text-brand-point">단순한 노동</span>이 되고 있지는 않나요?
+            헬스장에서 효과를 못본건<br/>
+            <span className="text-brand-point">당신 탓이 아닙니다.</span>
           </motion.h2>
           <motion.p {...fadeIn} className="text-lg text-gray-600 font-medium">
             3040 직장인이라면 한 번쯤 겪는 지긋지긋한 불편함들
