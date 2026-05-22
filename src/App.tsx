@@ -379,6 +379,39 @@ export default function App() {
         </div>
       </section>
 
+      {/* 06-2. Proof Statistics Section */}
+      <section className="section-padding bg-[#050A1F] text-white">
+        <div className="max-w-5xl mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-5xl font-black mb-8 break-keep">처음엔 다들 비슷한 마음으로 오셨습니다.</h2>
+          <div className="w-12 h-1 bg-[#d4af37] mx-auto mb-10"></div>
+          
+          <div className="text-gray-400 font-medium space-y-2 mb-10 text-lg">
+            <p>"운동 경험이 없어서요",</p>
+            <p>"헬스장이 너무 무서워서요",</p>
+            <p>"PT는 부담스러워서요"</p>
+          </div>
+          
+          <p className="text-gray-300 font-medium mb-20 text-lg break-keep">
+            하지만 하이엔드를 경험하고 진솔하게 남긴 후기를 읽어주세요.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+            <div>
+              <div className="text-6xl md:text-7xl font-black text-[#d4af37] mb-4">85%</div>
+              <div className="text-gray-400 font-bold">시설 이용권 재등록률</div>
+            </div>
+            <div>
+              <div className="text-6xl md:text-7xl font-black text-[#d4af37] mb-4">90%</div>
+              <div className="text-gray-400 font-bold">회원 평균 만족도</div>
+            </div>
+            <div>
+              <div className="text-6xl md:text-7xl font-black text-[#d4af37] mb-4">95%</div>
+              <div className="text-gray-400 font-bold">PT 완주율</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 07. Process Section */}
       {/* 심리: 목표 그라데이션 효과 - 6단계로 확장하여 신뢰도 강화 */}
       <section className="section-padding bg-brand-outer text-white">
