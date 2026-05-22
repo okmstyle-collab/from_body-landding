@@ -301,8 +301,8 @@ export default function App() {
               <div className="flex items-center justify-center p-4 rounded-full bg-brand-point/10 mb-6">
                 <MapPin size={32} className="text-brand-point" />
               </div>
-              <h3 className="text-2xl font-black mb-4">헬스 (회원권)</h3>
-              <p className="text-gray-500 mb-8 font-medium">쾌적한 시설과 최신 기구를<br/>자유롭게 이용하는 실속 플랜</p>
+              <h3 className="text-2xl font-black mb-4 break-keep">헬스 (회원권)</h3>
+              <p className="text-gray-500 mb-8 font-medium break-keep">쾌적한 시설과 최신 기구를<br/>자유롭게 이용하는 실속 플랜</p>
               <ul className="text-left w-full space-y-3 mb-8">
                 {["최상급 프리미엄 기구 완비", "여유로운 스트레칭 존", "등록 시 기본 O.T 제공"].map((t, i) => (
                   <li key={i} className="flex gap-2 text-sm font-bold text-gray-700">
@@ -322,8 +322,8 @@ export default function App() {
               <div className="flex items-center justify-center p-4 rounded-full bg-brand-point/10 mb-6">
                 <Activity size={32} className="text-brand-point" />
               </div>
-              <h3 className="text-2xl font-black mb-4">1:1 맞춤형 PT&필라테스</h3>
-              <p className="text-gray-500 mb-8 font-medium">재활부터 통증 케어, 고강도 근력 증강까지<br/>오직 당신만을 위한 설계</p>
+              <h3 className="text-2xl font-black mb-4 break-keep">1:1 맞춤형 PT&필라테스</h3>
+              <p className="text-gray-500 mb-8 font-medium break-keep">재활부터 통증 케어, 고강도<br/>근력 증강까지<br/>오직 당신만을 위한 설계</p>
               <ul className="text-left w-full space-y-3 mb-8">
                 {["체형 분석 기반 루틴 설계", "개인 대시보드 리포팅", "식단 및 생활 습관 서포트"].map((t, i) => (
                   <li key={i} className="flex gap-2 text-sm font-bold text-gray-700">
@@ -344,7 +344,7 @@ export default function App() {
                 바레 (barre)
                 <span className="text-brand-point text-base font-bold">작전점</span>
               </h3>
-              <p className="text-gray-500 mb-8 font-medium">우아한 움직임 속 강력한 코어 밸런스를 통해,<br/>선명한 바디라인을 잡아보세요</p>
+              <p className="text-gray-500 mb-8 font-medium break-keep">우아한 움직임 속 강력한 코어 밸런스를 통해,<br/>선명한 바디라인을 잡아보세요</p>
               <ul className="text-left w-full space-y-3 mb-8">
                 {[
                   "발레 동작 기반 - 몸선을 따라 흐르는 동작", 
