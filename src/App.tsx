@@ -136,7 +136,7 @@ export default function App() {
           </motion.h2>
           <motion.p {...fadeIn} className="text-lg text-gray-600 font-medium break-keep leading-relaxed">
             헬스장 등록하고 기부하신 적 있으신가요?<br/>
-            헬스장을 가도 뭘 해야 할지 몰라 런닝머신만 타셨나요?<br/>
+            뭘 해야 할지 몰라 런닝머신만 타셨나요?<br/>
             그건 의지의 문제가 아닌 <span className="text-brand-point font-black">제대로 된 환경과 시스템</span>이 없었기 때문입니다.
           </motion.p>
         </div>
