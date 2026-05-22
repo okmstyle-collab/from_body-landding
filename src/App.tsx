@@ -428,7 +428,10 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-5xl font-black mb-16 break-keep">프롬바디 실제 회원님들의 후기</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-            {['review1.png', 'review2.png', 'review3.png', 'review4.png', 'review5.png'].map((img, i) => (
+            {[
+              'review1.png', 'review2.png', 'review3.png', 'review4.png', 'review5.png',
+              'review6.png', 'review7.png', 'review8.png', 'review9.png', 'review10.png'
+            ].map((img, i) => (
               <div key={i} className="rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow bg-white border border-gray-100">
                 <img src={`/reviews/${img}`} alt={`프롬바디 회원 후기 ${i+1}`} className="w-full h-auto" />
               </div>
