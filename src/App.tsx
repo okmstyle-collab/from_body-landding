@@ -496,7 +496,7 @@ export default function App() {
           <div className="text-center mb-20">
             <div className="text-brand-point text-2xl md:text-3xl font-black mb-3 italic tracking-tight">지금바로 당장!</div>
             <h2 className="text-4xl md:text-6xl font-black mb-8 italic uppercase tracking-tighter">
-              CHANGE YOUR BODY & LIFE
+              CHANGE YOUR<br/>BODY & LIFE
             </h2>
             <p className="text-xl text-gray-600 mb-10 font-bold">
               오늘의 미룸이 내일의 통증을 만듭니다.<br/>
