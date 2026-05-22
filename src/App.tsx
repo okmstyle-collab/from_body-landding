@@ -344,6 +344,17 @@ export default function App() {
                 <span className="text-brand-point text-base font-bold">작전점</span>
               </h3>
               <p className="text-gray-500 mb-8 font-medium">우아한 움직임 속 강력한 코어 밸런스를 통해,<br/>선명한 바디라인을 잡아보세요</p>
+              <ul className="text-left w-full space-y-3 mb-8">
+                {[
+                  "발레 동작 기반 - 몸선을 따라 흐르는 동작", 
+                  "고강도 근육 자극 - 코어 중심 실루엣 정리", 
+                  "저충격 설계 - 관절에 무리 없이 꾸준히"
+                ].map((t, i) => (
+                  <li key={i} className="flex gap-2 text-sm font-bold text-gray-700 break-keep">
+                    <CheckCircle2 size={16} className="text-brand-point shrink-0 mt-0.5" /> {t}
+                  </li>
+                ))}
+              </ul>
               <div className="mt-auto pt-6 border-t w-full text-sm text-gray-400 font-bold">하루 50분 나를위한 가장 우아한 자기관리</div>
             </motion.div>
           </div>
