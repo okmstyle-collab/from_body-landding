@@ -134,8 +134,10 @@ export default function App() {
             헬스장에서 효과를 못 본건<br/>
             <span className="text-brand-point whitespace-nowrap">당신 탓이 아닙니다.</span>
           </motion.h2>
-          <motion.p {...fadeIn} className="text-lg text-gray-600 font-medium">
-            3040 직장인이라면 한 번쯤 겪는 지긋지긋한 불편함들
+          <motion.p {...fadeIn} className="text-lg text-gray-600 font-medium break-keep leading-relaxed">
+            헬스장 등록하고 기부하신 적 있으신가요?<br/>
+            헬스장을 가도 뭘 해야 할지 몰라 런닝머신만 타셨나요?<br/>
+            그건 의지의 문제가 아닌 <span className="text-brand-point font-black">제대로 된 환경과 시스템</span>이 없었기 때문입니다.
           </motion.p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
