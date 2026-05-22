@@ -427,12 +427,10 @@ export default function App() {
       <section className="section-padding bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-5xl font-black mb-16 break-keep">프롬바디 실제 회원님들의 후기</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="aspect-square bg-gray-200 rounded-xl flex items-center justify-center text-gray-400 font-bold overflow-hidden relative group shadow-sm hover:shadow-md transition-shadow">
-                {/* [보완 필요] 실제 리뷰 사진 교체 영역 */}
-                <span className="z-10">후기 캡처본 / 사진 {i}</span>
-                <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors"></div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+            {['review1.png', 'review2.png', 'review3.png', 'review4.png', 'review5.png'].map((img, i) => (
+              <div key={i} className="rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow bg-white border border-gray-100">
+                <img src={`/reviews/${img}`} alt={`프롬바디 회원 후기 ${i+1}`} className="w-full h-auto" />
               </div>
             ))}
           </div>
