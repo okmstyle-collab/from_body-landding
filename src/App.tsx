@@ -412,6 +412,22 @@ export default function App() {
         </div>
       </section>
 
+      {/* 06-3. Real Member Reviews Section */}
+      <section className="section-padding bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-5xl font-black mb-16 break-keep">프롬바디 실제 회원님들의 후기</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <div key={i} className="aspect-square bg-gray-200 rounded-xl flex items-center justify-center text-gray-400 font-bold overflow-hidden relative group shadow-sm hover:shadow-md transition-shadow">
+                {/* [보완 필요] 실제 리뷰 사진 교체 영역 */}
+                <span className="z-10">후기 캡처본 / 사진 {i}</span>
+                <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors"></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 07. Process Section */}
       {/* 심리: 목표 그라데이션 효과 - 6단계로 확장하여 신뢰도 강화 */}
       <section className="section-padding bg-brand-outer text-white">
