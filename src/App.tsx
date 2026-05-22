@@ -213,14 +213,21 @@ export default function App() {
                   <div className="bg-brand-point/10 p-3 rounded-lg"><Activity className="text-brand-point" size={24} /></div>
                   <div>
                     <h3 className="text-xl font-bold mb-2 text-balance">AI 체형분석부터 식단까지 철저한 관리 시스템</h3>
-                    <p className="text-gray-400 font-medium">오늘의 운동 목표, 수행 능력 변화, 식단 기록까지 한눈에 확인하는 개인 대시보드를 제공합니다.</p>
+                    <p className="text-gray-400 font-medium">
+                      전용 앱을 이용하여 개인최적화 관리 시스템으로 체형분석부터<br/>
+                      운동 전 컨디션 체크, 운동일지, 식단기록까지 실패없는 운동을 전달합니다.
+                    </p>
                   </div>
                 </div>
                 <div className="flex gap-4 items-start text-left">
                   <div className="bg-brand-point/10 p-3 rounded-lg"><User className="text-brand-point" size={24} /></div>
                   <div>
                     <h3 className="text-xl font-bold mb-2">1:1 전담 마킹 시스템</h3>
-                    <p className="text-gray-400 font-medium">단순히 50분 수업으로 끝내지 않습니다. 수업 외 시간에 대한 피드백까지 전담 트레이너가 함께합니다.</p>
+                    <p className="text-gray-400 font-medium">
+                      단순히 50분 수업으로 끝내지 않습니다.<br/>
+                      수업 외 시간에 대한 피드백까지<br/>
+                      전담 트레이너가 함께합니다.
+                    </p>
                   </div>
                 </div>
               </div>
