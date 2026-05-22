@@ -367,12 +367,21 @@ export default function App() {
       <section className="section-padding overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-5xl font-black mb-16 break-keep">프롬바디가 <span className="text-brand-point">증명한 변화들</span></h2>
-          <div className="grid grid-rows-2 grid-flow-col auto-cols-[85%] sm:auto-cols-[45%] lg:grid-rows-none lg:grid-flow-row lg:grid-cols-4 lg:auto-cols-auto gap-4 lg:gap-6 overflow-x-auto snap-x snap-mandatory pb-4 lg:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
-            {[6, 7, 8, 9, 10, 11, 12, 13].map(i => (
-              <div key={i} className="snap-center flex-shrink-0 rounded-xl overflow-hidden shadow-xl bg-white transform transition-transform lg:hover:-translate-y-2">
-                <img src={`/transformations/transform${i}.jpg`} alt={`프롬바디 변화 증명 ${i}`} className="w-full h-auto object-cover pointer-events-none" />
-              </div>
-            ))}
+          <div className="flex flex-col gap-4 lg:gap-6">
+            <div className="grid grid-flow-col auto-cols-[85%] sm:auto-cols-[45%] lg:grid-rows-none lg:grid-flow-row lg:grid-cols-4 lg:auto-cols-auto gap-4 lg:gap-6 overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+              {[6, 7, 8, 9].map(i => (
+                <div key={i} className="snap-center flex-shrink-0 rounded-xl overflow-hidden shadow-xl bg-white transform transition-transform lg:hover:-translate-y-2">
+                  <img src={`/transformations/transform${i}.jpg`} alt={`프롬바디 변화 증명 ${i}`} className="w-full h-auto object-cover pointer-events-none" />
+                </div>
+              ))}
+            </div>
+            <div className="grid grid-flow-col auto-cols-[85%] sm:auto-cols-[45%] lg:grid-rows-none lg:grid-flow-row lg:grid-cols-4 lg:auto-cols-auto gap-4 lg:gap-6 overflow-x-auto snap-x snap-mandatory pb-4 lg:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+              {[10, 11, 12, 13].map(i => (
+                <div key={i} className="snap-center flex-shrink-0 rounded-xl overflow-hidden shadow-xl bg-white transform transition-transform lg:hover:-translate-y-2">
+                  <img src={`/transformations/transform${i}.jpg`} alt={`프롬바디 변화 증명 ${i}`} className="w-full h-auto object-cover pointer-events-none" />
+                </div>
+              ))}
+            </div>
           </div>
           <div className="mt-16 flex flex-wrap gap-8 justify-center items-center grayscale opacity-60">
             <div className="font-black text-4xl">500+</div>
