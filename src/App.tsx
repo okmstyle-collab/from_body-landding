@@ -294,7 +294,7 @@ export default function App() {
             <h2 className="text-4xl font-black mb-6"><span className="text-brand-point">최상의 결과</span>를 위한<br/>프롬바디 프로그램</h2>
             <p className="text-gray-500 font-medium italic">당신의 목적에 맞는 최적의 플랜을 제안합니다.</p>
           </div>
-          <div className="grid grid-rows-1 grid-flow-col auto-cols-[85%] sm:auto-cols-[60%] md:grid-rows-none md:grid-flow-row md:grid-cols-3 md:auto-cols-auto gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory pt-8 pb-12 px-4 -mx-4 md:pt-4 md:pb-4 md:px-0 md:mx-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+          <div className="grid grid-rows-1 grid-flow-col auto-cols-[85%] sm:auto-cols-[60%] md:grid-rows-none md:grid-flow-row md:grid-cols-3 md:auto-cols-auto gap-6 md:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory pt-8 pb-12 px-4 -mx-4 md:pt-8 md:pb-12 md:px-0 md:mx-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
             {/* Health */}
             <motion.div {...fadeIn} className="snap-center flex-shrink-0 bg-white p-10 ring-4 ring-brand-point relative flex flex-col items-center text-center md:-translate-y-4 shadow-2xl mt-4 md:mt-0">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-point text-white text-xs font-black px-4 py-1 uppercase tracking-widest">Best Choice</div>
