@@ -364,7 +364,7 @@ export default function App() {
 
       {/* 06. Results/Proof Section */}
       {/* 심리: 사회적 증거 & 후광 효과 */}
-      <section className="section-padding overflow-hidden bg-brand-point text-white">
+      <section className="section-padding overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-4xl font-black mb-16">프롬바디가 증명한 변화들</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
@@ -374,7 +374,7 @@ export default function App() {
               </div>
             ))}
           </div>
-          <div className="mt-16 flex flex-wrap gap-8 justify-center items-center opacity-80 text-white">
+          <div className="mt-16 flex flex-wrap gap-8 justify-center items-center grayscale opacity-60">
             <div className="font-black text-4xl">500+</div>
             <div className="font-black text-4xl italic">FROMBODY</div>
             <div className="font-black text-4xl tracking-tighter">FITNESS</div>
