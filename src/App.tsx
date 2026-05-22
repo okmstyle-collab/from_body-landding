@@ -392,7 +392,7 @@ export default function App() {
           </div>
           
           <p className="text-gray-300 font-medium mb-20 text-lg break-keep">
-            하지만 하이엔드를 경험하고 진솔하게 남긴 후기를 읽어주세요.
+            하지만 프롬바디를 경험하고 진솔하게 남긴 후기를 읽어주세요.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
