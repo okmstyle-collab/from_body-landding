@@ -184,7 +184,9 @@ export default function App() {
               {[
                 "어느 지점을 가도 동일한 직영 퀄리티",
                 "수업이 끝나도 이어지는 철저한 개인 관리",
-                "부담 없는 상담과 전문적인 트레이닝"
+                "부담 없는 상담과 전문적인 트레이닝",
+                "위압감 없고 PT강요 없는곳",
+                "청결 친절 진정성이 가장 우선"
               ].map((text, i) => (
                 <li key={i} className="flex items-center gap-3 font-bold text-gray-800">
                   <CheckCircle2 className="text-brand-point" size={20} />
