@@ -388,8 +388,8 @@ export default function App() {
             {[
               { num: "01", title: "설문지 작성", desc: "1분이면 됩니다. 이름·연락처·목표만 입력하면 OK" },
               { num: "02", title: "담당자 연락", desc: "작성 후 24시간 내 트레이너가 직접 연락드립니다" },
-              { num: "03", title: "무료 방문 상담", desc: "부담 없이 공간을 먼저 경험해보세요 (구매 강요 없음)" },
-              { num: "04", title: "나만의 루틴으로 시작", desc: "시설만 이용할지, PT와 함께할지 그때 결정하면 됩니다" }
+              { num: "03", title: "무료 방문 상담", desc: <>부담 없이 공간을 먼저 경험해보세요<br/>(구매 강요 없음)</> },
+              { num: "04", title: "나만의 루틴으로 시작", desc: <>시설만 이용할지, PT와 함께할지<br/>그때 결정하면 됩니다</> }
             ].map((item, i) => (
               <div key={i} className="relative z-10 flex flex-col items-center group">
                 <div className="w-20 h-20 bg-brand-point rounded-full flex items-center justify-center font-black text-2xl mb-6 shadow-xl shadow-brand-point/20 group-hover:scale-110 transition-transform duration-300">
