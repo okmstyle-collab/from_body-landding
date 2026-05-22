@@ -98,9 +98,9 @@ export default function App() {
             <div className="inline-block bg-brand-point text-white text-xs font-bold px-3 py-1 rounded-sm mb-6 tracking-widest uppercase">
               10 Years of Trust in Incheon
             </div>
-            <h1 className="text-5xl md:text-7xl font-black text-white leading-[1.1] text-balance mb-8">
-              인천에서 10년간 운영한<br/>
-              <span className="text-brand-point">가장 신뢰가는</span>,<br/>
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black text-white leading-[1.2] md:leading-[1.1] break-keep tracking-tight mb-8">
+              <span className="whitespace-nowrap">인천에서 10년간 운영한</span><br/>
+              <span className="text-brand-point">가장 신뢰가는</span><br/>
               프롬바디 피트니스
             </h1>
             <p className="text-xl text-gray-300 mb-10 leading-relaxed font-medium">
