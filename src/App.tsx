@@ -103,9 +103,10 @@ export default function App() {
               <span className="text-brand-point">가장 신뢰가는</span><br/>
               프롬바디 피트니스
             </h1>
-            <p className="text-xl text-gray-300 mb-10 leading-relaxed font-medium">
-              10년의 노하우는 배신하지 않습니다. 정밀한 측정과 체계적인 리포트로<br className="hidden md:block"/>
-              당신의 몸이 변하는 과정을 데이터로 증명합니다.
+            <p className="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed font-medium break-keep">
+              10년의 신뢰는 다릅니다.<br/>
+              수많은 회원님들이 10년간 증명해준<br/>
+              정말 회원님들을 위한 피트니스 프롬바디입니다.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 items-center">
               <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
