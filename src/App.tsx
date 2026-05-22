@@ -150,8 +150,8 @@ export default function App() {
               className="bg-white p-10 border-b-4 border-brand-point shadow-sm"
             >
               <div className="text-brand-point font-black text-sm mb-4">{item.tag}</div>
-              <h3 className="text-2xl font-black mb-4">{item.title}</h3>
-              <p className="text-gray-500 leading-relaxed font-medium">{item.desc}</p>
+              <h3 className="text-2xl font-black mb-4 break-keep">{item.title}</h3>
+              <p className="text-gray-500 leading-relaxed font-medium break-keep">{item.desc}</p>
             </motion.div>
           ))}
         </div>
