@@ -356,7 +356,7 @@ export default function App() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-auto pt-6 border-t w-full text-sm text-gray-400 font-bold">하루 50분 나를위한 가장 우아한 자기관리</div>
+              <div className="mt-auto pt-6 border-t w-full text-sm text-gray-400 font-bold break-keep">하루 50분 나를위한 가장 우아한<br/>자기관리</div>
             </motion.div>
           </div>
         </div>
