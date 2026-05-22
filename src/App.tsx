@@ -244,6 +244,43 @@ export default function App() {
         </div>
       </section>
 
+      {/* 04-5. Comparison Section */}
+      <section className="section-padding bg-gray-50">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-black">
+              <span className="text-brand-point">프롬바디</span>는 이렇게 달라요
+            </h2>
+          </div>
+          <div className="bg-[#1f1f1f] rounded-2xl overflow-hidden shadow-2xl">
+            {/* Header */}
+            <div className="grid grid-cols-3 border-b border-white/10 text-lg md:text-xl font-black text-center items-center">
+              <div className="p-4 md:p-6 text-transparent select-none">구분</div>
+              <div className="p-4 md:p-6 bg-brand-point/10 text-brand-point border-x border-white/10">프롬바디피트니스</div>
+              <div className="p-4 md:p-6 text-gray-400">일반 헬스장</div>
+            </div>
+            
+            {/* Rows */}
+            {[
+              { label: "기구 사용법", pro: "QR 스캔으로 즉시 확인", con: "물어보기 눈치" },
+              { label: "운동 루틴", pro: "회원권만으로 루틴 완성", con: "PT 강요" },
+              { label: "목적별 프로그램", pro: "맞춤형 전문 프로그램", con: "획일화된 프로그램" },
+              { label: "AI 체형 분석", pro: "매월 정밀 측정", con: "없음" },
+              { label: "회원 관리 시스템", pro: "밀착 케어", con: "방치" },
+              { label: "평균 목표 달성", pro: "3개월", con: "작심삼일" },
+            ].map((row, i) => (
+              <div key={i} className="grid grid-cols-3 border-b border-white/10 last:border-0 text-xs sm:text-sm md:text-base transition-colors hover:bg-white/5">
+                <div className="p-4 md:p-6 text-white font-bold flex items-center justify-center md:justify-start break-keep text-center md:text-left">{row.label}</div>
+                <div className="p-4 md:p-6 bg-brand-point/5 text-brand-point font-bold flex flex-col md:flex-row items-center justify-center border-x border-white/10 gap-1 md:gap-2 text-center break-keep">
+                  <CheckCircle2 size={18} className="shrink-0" /> {row.pro}
+                </div>
+                <div className="p-4 md:p-6 text-gray-500 font-medium flex items-center justify-center text-center break-keep">{row.con}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 05. Service Section */}
       {/* 심리: 미끼 효과 & 중앙 무대 효과 */}
       <section id="programs" className="section-padding bg-gray-50">
