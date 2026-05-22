@@ -170,9 +170,10 @@ export default function App() {
           </div>
           <div className="w-full md:w-1/2">
             <h2 className="text-4xl md:text-5xl font-black mb-8 leading-tight">
-              운동은 빡세게,<br/>
-              분위기는 즐겁게.<br/>
-              <span className="text-brand-point">그게 프롬바디니까.</span>
+              운동은 정확하게,<br/>
+              효과는 확실하게,<br/>
+              분위기는 즐겁게,<br/>
+              <span className="text-brand-point">그게 프롬바디니까!</span>
             </h2>
             <p className="text-lg text-gray-600 mb-8 leading-relaxed font-medium break-keep">
               운동하러 가는 길이 스트레스가 되면 안 됩니다. 프롬바디는 활기찬 에너지가 흐르는<br/>
