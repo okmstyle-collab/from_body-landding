@@ -403,8 +403,8 @@ export default function App() {
             <div>
               <div className="text-brand-point mb-4 font-black">HOURS</div>
               <p>평일 09:00 ~ 23:00</p>
-              <p>주말 10:00 ~ 18:00</p>
-              <p className="text-xs text-gray-400 mt-2">*공휴일 별도 공지</p>
+              <p>토요일 10:00 ~ 18:00</p>
+              <p className="text-xs text-gray-400 mt-2">일요일 공휴일 별도공지</p>
             </div>
             <div>
               <div className="text-brand-point mb-4 font-black">CONTACT</div>
