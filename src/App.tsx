@@ -178,8 +178,10 @@ export default function App() {
               <span className="text-brand-point">그게 프롬바디니까!</span>
             </h2>
             <p className="text-lg text-gray-600 mb-8 leading-relaxed font-medium break-keep">
-              운동하러 가는 길이 스트레스가 되면 안 됩니다. 프롬바디는 활기찬 에너지가 흐르는<br/>
-              공간에서 트레이너와 파트너가 되어 함께 목표를 달성하는 문화를 지향합니다.
+              운동하러 가는 길이 스트레스가 되면 안 됩니다.<br/>
+              프롬바디는 활기찬 에너지가 흐르는 공간에서<br/>
+              트레이너는 조력자가 되고 옆 사람들은 동료가 되어 함께<br/>
+              목표를 달성하는 문화를 지향합니다.
             </p>
             <ul className="space-y-4 mb-10">
               {[
