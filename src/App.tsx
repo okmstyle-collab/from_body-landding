@@ -501,6 +501,7 @@ export default function App() {
       <footer className="bg-gray-50 pt-20 pb-12 border-t">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
+            <div className="text-brand-point text-2xl md:text-3xl font-black mb-3 italic tracking-tight">지금바로 당장!</div>
             <h2 className="text-4xl md:text-6xl font-black mb-8 italic uppercase tracking-tighter">
               CHANGE YOUR BODY & LIFE
             </h2>
