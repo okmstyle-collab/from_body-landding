@@ -226,9 +226,12 @@ export default function App() {
               </div>
             </div>
             <div className="w-full md:w-1/2">
-              <div className="placeholder h-[400px] bg-white/5 rounded-xl border border-white/10" data-role="system_dashboard">
-                {/* [보완 필요] 노션 리포트 관리 대시보드 캡쳐 이미지 */}
-                투명한 회원 관리 리포트 대시보드
+              <div className="rounded-xl overflow-hidden shadow-2xl border border-white/10 w-full h-auto">
+                <img 
+                  src="/system-dashboard.jpg" 
+                  alt="프롬바디 관리 시스템" 
+                  className="w-full h-auto object-cover"
+                />
               </div>
             </div>
           </div>
