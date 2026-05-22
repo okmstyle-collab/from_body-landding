@@ -294,9 +294,9 @@ export default function App() {
             <h2 className="text-4xl font-black mb-6"><span className="text-brand-point">최상의 결과</span>를 위한<br/>프롬바디 프로그램</h2>
             <p className="text-gray-500 font-medium italic">당신의 목적에 맞는 최적의 플랜을 제안합니다.</p>
           </div>
-          <div className="grid grid-rows-1 grid-flow-col auto-cols-[92%] sm:auto-cols-[60%] md:grid-rows-none md:grid-flow-row md:grid-cols-3 md:auto-cols-auto gap-6 md:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory pt-8 pb-12 px-4 -mx-4 md:pt-8 md:pb-12 md:px-0 md:mx-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+          <div className="grid grid-rows-1 grid-flow-col auto-cols-[95%] sm:auto-cols-[60%] md:grid-rows-none md:grid-flow-row md:grid-cols-3 md:auto-cols-auto gap-4 md:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory pt-8 pb-12 px-4 -mx-4 md:pt-8 md:pb-12 md:px-0 md:mx-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
             {/* Health */}
-            <motion.div {...fadeIn} className="snap-center flex-shrink-0 bg-white px-6 py-8 md:p-10 ring-4 ring-brand-point relative flex flex-col items-center text-center md:-translate-y-4 shadow-2xl mt-4 md:mt-0">
+            <motion.div {...fadeIn} className="snap-center flex-shrink-0 bg-white px-4 py-8 md:p-10 ring-4 ring-brand-point relative flex flex-col items-center text-center md:-translate-y-4 shadow-2xl mt-4 md:mt-0">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-point text-white text-xs font-black px-4 py-1 uppercase tracking-widest">Best Choice</div>
               <div className="flex items-center justify-center p-4 rounded-full bg-brand-point/10 mb-6">
                 <MapPin size={32} className="text-brand-point" />
@@ -305,7 +305,7 @@ export default function App() {
               <p className="text-gray-500 mb-6 md:mb-8 font-medium break-keep">쾌적한 시설과 최신 기구를<br/>자유롭게 이용하는 실속 플랜</p>
               <ul className="text-left w-full space-y-3 mb-6 md:mb-8">
                 {["최상급 프리미엄 기구 완비", "여유로운 스트레칭 존", "등록 시 기본 O.T 제공"].map((t, i) => (
-                  <li key={i} className="flex gap-2 text-sm font-bold text-gray-700">
+                  <li key={i} className="flex gap-2 text-[13px] md:text-sm font-bold text-gray-700">
                     <CheckCircle2 size={16} className="text-brand-point shrink-0" /> {t}
                   </li>
                 ))}
@@ -316,7 +316,7 @@ export default function App() {
             {/* PT (Main) */}
             <motion.div 
               {...fadeIn} 
-              className="snap-center flex-shrink-0 bg-white px-6 py-8 md:p-10 ring-4 ring-brand-point relative flex flex-col items-center text-center md:-translate-y-4 shadow-2xl mt-4 md:mt-0"
+              className="snap-center flex-shrink-0 bg-white px-4 py-8 md:p-10 ring-4 ring-brand-point relative flex flex-col items-center text-center md:-translate-y-4 shadow-2xl mt-4 md:mt-0"
             >
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-point text-white text-xs font-black px-4 py-1 uppercase tracking-widest">Best Choice</div>
               <div className="flex items-center justify-center p-4 rounded-full bg-brand-point/10 mb-6">
@@ -326,7 +326,7 @@ export default function App() {
               <p className="text-gray-500 mb-6 md:mb-8 font-medium break-keep">재활부터 통증 케어, 고강도<br/>근력 증강까지<br/>오직 당신만을 위한 설계</p>
               <ul className="text-left w-full space-y-3 mb-6 md:mb-8">
                 {["체형 분석 기반 루틴 설계", "개인 대시보드 리포팅", "식단 및 생활 습관 서포트"].map((t, i) => (
-                  <li key={i} className="flex gap-2 text-sm font-bold text-gray-700">
+                  <li key={i} className="flex gap-2 text-[13px] md:text-sm font-bold text-gray-700">
                     <CheckCircle2 size={16} className="text-brand-point shrink-0" /> {t}
                   </li>
                 ))}
@@ -335,7 +335,7 @@ export default function App() {
             </motion.div>
 
             {/* Pilates */}
-            <motion.div {...fadeIn} className="snap-center flex-shrink-0 bg-white px-6 py-8 md:p-10 ring-4 ring-brand-point relative flex flex-col items-center text-center md:-translate-y-4 shadow-2xl mt-4 md:mt-0">
+            <motion.div {...fadeIn} className="snap-center flex-shrink-0 bg-white px-4 py-8 md:p-10 ring-4 ring-brand-point relative flex flex-col items-center text-center md:-translate-y-4 shadow-2xl mt-4 md:mt-0">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-point text-white text-xs font-black px-4 py-1 uppercase tracking-widest">Best Choice</div>
               <div className="flex items-center justify-center p-4 rounded-full bg-brand-point/10 mb-6">
                 <User size={32} className="text-brand-point" />
@@ -351,7 +351,7 @@ export default function App() {
                   "고강도 근육 자극 - 코어 중심 실루엣 정리", 
                   "저충격 설계 - 관절에 무리 없이 꾸준히"
                 ].map((t, i) => (
-                  <li key={i} className="flex gap-2 text-sm font-bold text-gray-700 break-keep">
+                  <li key={i} className="flex gap-2 text-[13px] md:text-sm font-bold text-gray-700 break-keep">
                     <CheckCircle2 size={16} className="text-brand-point shrink-0 mt-0.5" /> {t}
                   </li>
                 ))}
