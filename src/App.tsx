@@ -344,7 +344,7 @@ export default function App() {
                 바레 (barre)
                 <span className="text-brand-point text-base font-bold">작전점</span>
               </h3>
-              <p className="text-gray-500 mb-6 md:mb-8 font-medium break-keep">우아한 움직임 속 강력한 코어 밸런스를 통해,<br/>선명한 바디라인을 잡아보세요</p>
+              <p className="text-gray-500 mb-6 md:mb-8 font-medium break-keep text-[15px] sm:text-base tracking-tight">우아한 움직임 속 강력한 코어 밸런스를 통해<br/>선명한 바디라인을 잡아보세요</p>
               <ul className="text-left w-full space-y-3 mb-6 md:mb-8">
                 {[
                   "발레 동작 기반 - 몸선을 따라 흐르는 동작", 
