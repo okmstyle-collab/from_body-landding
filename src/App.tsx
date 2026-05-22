@@ -381,24 +381,25 @@ export default function App() {
 
       {/* 07. Process Section */}
       {/* 심리: 목표 그라데이션 효과 - 6단계로 확장하여 신뢰도 강화 */}
-      <section className="section-padding bg-brand-outer text-white">
-        <div className="max-w-6xl mx-auto px-4 text-center">
+      <section className="section-padding bg-[#050A1F] text-white">
+        <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-black mb-16">프롬바디는 이렇게 시작됩니다</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-x-8 relative">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-16 gap-x-6 relative">
             {[
-              { step: "01", title: "무료 신청", desc: "온라인 또는 전화로 간편 예약" },
-              { step: "02", title: "사전 설문", desc: "원활한 상담을 위한 컨디션 기반 설문" },
-              { step: "03", title: "시설투어", desc: "직접 보고 느끼고 결정하세요" },
-              { step: "04", title: "운동목적상담", desc: "목표에 맞는 방향을 함께 잡아드려요" },
-              { step: "05", title: "체험 수업", desc: "데이터 기반 맞춤형 운동 프로그램 진행" },
-              { step: "06", title: "운동진행", desc: "프롬바디와 함께 즐거운 여정의 시작" }
+              { step: "STEP 1", icon: "📝", title: "설문지 작성", desc: "1분이면 됩니다. 이름·연락처·목표만 입력하면 OK" },
+              { step: "STEP 2", icon: "📞", title: "담당자 연락", desc: "작성 후 24시간 내 트레이너가 직접 연락드립니다" },
+              { step: "STEP 3", icon: "🚪", title: "무료 방문 상담", desc: "부담 없이 공간을 먼저 경험해보세요 (구매 강요 없음)" },
+              { step: "STEP 4", icon: "💪", title: "나만의 루틴으로 시작", desc: "시설만 이용할지, PT와 함께할지 그때 결정하면 됩니다" }
             ].map((item, i) => (
               <div key={i} className="relative z-10 flex flex-col items-center group">
-                <div className="w-20 h-20 bg-brand-point rounded-full flex items-center justify-center font-black text-2xl mb-6 shadow-xl shadow-brand-point/20 group-hover:scale-110 transition-transform duration-300">
-                  {item.step}
+                <div className="w-20 h-20 rounded-full border border-white/20 bg-white/5 flex items-center justify-center text-3xl mb-6 shadow-lg group-hover:bg-white/10 transition-colors duration-300">
+                  {item.icon}
                 </div>
-                <h3 className="text-xl font-bold mb-2 italic">{item.title}</h3>
-                <p className="text-gray-400 text-sm font-medium px-4">{item.desc}</p>
+                <div className="text-[#d4af37] font-bold text-sm tracking-widest mb-3 uppercase">{item.step}</div>
+                <h3 className="text-xl font-bold mb-4">{item.title}</h3>
+                <p className="text-gray-400 text-sm font-medium px-2 leading-relaxed break-keep">
+                  {item.desc}
+                </p>
               </div>
             ))}
           </div>
