@@ -175,9 +175,9 @@ export default function App() {
               <span className="text-brand-point">그게 프롬바디니까!</span>
             </h2>
             <p className="text-lg text-gray-600 mb-8 leading-relaxed font-medium break-keep">
-              운동하러 가는 길이 스트레스가 되면 안 됩니다.<br/>
-              프롬바디는 활기찬 에너지가 흐르는 공간에서<br/>
-              트레이너는 조력자가 되고 옆 사람들은 동료가 되어 함께<br/>
+              운동하러 가는 길이 스트레스가 되면 안 됩니다.<br className="hidden md:block"/>
+              프롬바디는 활기찬 에너지가 흐르는 공간에서<br className="hidden md:block"/>
+              트레이너는 조력자가 되고 옆 사람들은 동료가 되어 함께<br className="hidden md:block"/>
               목표를 달성하는 문화를 지향합니다.
             </p>
             <ul className="space-y-4 mb-10">
@@ -218,8 +218,8 @@ export default function App() {
                   <div className="bg-brand-point/10 p-3 rounded-lg"><Activity className="text-brand-point" size={24} /></div>
                   <div>
                     <h3 className="text-xl font-bold mb-2 text-balance">AI 체형분석부터 식단까지 철저한 관리 시스템</h3>
-                    <p className="text-gray-400 font-medium">
-                      전용 앱을 이용하여 개인최적화 관리 시스템으로 체형분석부터<br/>
+                    <p className="text-gray-400 font-medium break-keep">
+                      전용 앱을 이용하여 개인최적화 관리 시스템으로 체형분석부터<br className="hidden md:block"/>
                       운동 전 컨디션 체크, 운동일지, 식단기록까지 실패없는 운동을 전달합니다.
                     </p>
                   </div>
@@ -228,8 +228,8 @@ export default function App() {
                   <div className="bg-brand-point/10 p-3 rounded-lg"><User className="text-brand-point" size={24} /></div>
                   <div>
                     <h3 className="text-xl font-bold mb-2">1:1 전담 마킹 시스템</h3>
-                    <p className="text-gray-400 font-medium">
-                      단순히 50분 수업으로 끝내지 않습니다.<br/>
+                    <p className="text-gray-400 font-medium break-keep">
+                      단순히 50분 수업으로 끝내지 않습니다.<br className="hidden md:block"/>
                       수업 외 시간에 대한 피드백까지 전담 트레이너가 함께합니다.
                     </p>
                   </div>
@@ -437,7 +437,7 @@ export default function App() {
       {/* 심리: 목표 그라데이션 효과 - 6단계로 확장하여 신뢰도 강화 */}
       <section className="section-padding bg-brand-outer text-white">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-black mb-16">프롬바디는 <span className="text-brand-point">이렇게</span> 시작됩니다</h2>
+          <h2 className="text-3xl md:text-4xl font-black mb-16 break-keep">프롬바디는 <span className="text-brand-point">이렇게</span> 시작됩니다</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-16 gap-x-6 relative">
             {[
               { num: "01", title: "설문지 작성", desc: "1분이면 됩니다. 이름·연락처·목표만 입력하면 OK" },
