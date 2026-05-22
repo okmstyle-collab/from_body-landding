@@ -225,8 +225,7 @@ export default function App() {
                     <h3 className="text-xl font-bold mb-2">1:1 전담 마킹 시스템</h3>
                     <p className="text-gray-400 font-medium">
                       단순히 50분 수업으로 끝내지 않습니다.<br/>
-                      수업 외 시간에 대한 피드백까지<br/>
-                      전담 트레이너가 함께합니다.
+                      수업 외 시간에 대한 피드백까지 전담 트레이너가 함께합니다.
                     </p>
                   </div>
                 </div>
