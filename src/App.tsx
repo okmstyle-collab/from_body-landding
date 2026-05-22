@@ -259,10 +259,10 @@ export default function App() {
           </div>
           <div className="bg-[#1f1f1f] rounded-2xl overflow-hidden shadow-2xl">
             {/* Header */}
-            <div className="grid grid-cols-3 border-b border-white/10 text-lg md:text-xl font-black text-center items-center">
-              <div className="p-4 md:p-6 text-transparent select-none">구분</div>
-              <div className="p-4 md:p-6 bg-brand-point/10 text-brand-point border-x border-white/10">프롬바디피트니스</div>
-              <div className="p-4 md:p-6 text-gray-400">일반 헬스장</div>
+            <div className="grid grid-cols-3 border-b border-white/10 text-sm sm:text-lg md:text-xl font-black text-center items-center tracking-tight">
+              <div className="px-1 py-4 md:p-6 text-transparent select-none">구분</div>
+              <div className="px-1 py-4 md:p-6 bg-brand-point/10 text-brand-point border-x border-white/10 break-keep">프롬바디피트니스</div>
+              <div className="px-1 py-4 md:p-6 text-gray-400 whitespace-nowrap">일반 헬스장</div>
             </div>
             
             {/* Rows */}
