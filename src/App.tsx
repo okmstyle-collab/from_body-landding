@@ -296,7 +296,7 @@ export default function App() {
           </div>
           <div className="grid grid-rows-1 grid-flow-col auto-cols-[85%] sm:auto-cols-[60%] md:grid-rows-none md:grid-flow-row md:grid-cols-3 md:auto-cols-auto gap-6 md:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory pt-8 pb-12 px-4 -mx-4 md:pt-8 md:pb-12 md:px-0 md:mx-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
             {/* Health */}
-            <motion.div {...fadeIn} className="snap-center flex-shrink-0 bg-white p-10 ring-4 ring-brand-point relative flex flex-col items-center text-center md:-translate-y-4 shadow-2xl mt-4 md:mt-0">
+            <motion.div {...fadeIn} className="snap-center flex-shrink-0 bg-white px-6 py-8 md:p-10 ring-4 ring-brand-point relative flex flex-col items-center text-center md:-translate-y-4 shadow-2xl mt-4 md:mt-0">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-point text-white text-xs font-black px-4 py-1 uppercase tracking-widest">Best Choice</div>
               <div className="flex items-center justify-center p-4 rounded-full bg-brand-point/10 mb-6">
                 <MapPin size={32} className="text-brand-point" />
@@ -316,7 +316,7 @@ export default function App() {
             {/* PT (Main) */}
             <motion.div 
               {...fadeIn} 
-              className="snap-center flex-shrink-0 bg-white p-10 ring-4 ring-brand-point relative flex flex-col items-center text-center md:-translate-y-4 shadow-2xl mt-4 md:mt-0"
+              className="snap-center flex-shrink-0 bg-white px-6 py-8 md:p-10 ring-4 ring-brand-point relative flex flex-col items-center text-center md:-translate-y-4 shadow-2xl mt-4 md:mt-0"
             >
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-point text-white text-xs font-black px-4 py-1 uppercase tracking-widest">Best Choice</div>
               <div className="flex items-center justify-center p-4 rounded-full bg-brand-point/10 mb-6">
@@ -335,7 +335,7 @@ export default function App() {
             </motion.div>
 
             {/* Pilates */}
-            <motion.div {...fadeIn} className="snap-center flex-shrink-0 bg-white p-10 ring-4 ring-brand-point relative flex flex-col items-center text-center md:-translate-y-4 shadow-2xl mt-4 md:mt-0">
+            <motion.div {...fadeIn} className="snap-center flex-shrink-0 bg-white px-6 py-8 md:p-10 ring-4 ring-brand-point relative flex flex-col items-center text-center md:-translate-y-4 shadow-2xl mt-4 md:mt-0">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-point text-white text-xs font-black px-4 py-1 uppercase tracking-widest">Best Choice</div>
               <div className="flex items-center justify-center p-4 rounded-full bg-brand-point/10 mb-6">
                 <User size={32} className="text-brand-point" />
