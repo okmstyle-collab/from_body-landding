@@ -245,9 +245,10 @@ export default function App() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Health */}
-            <motion.div {...fadeIn} className="bg-white p-10 border border-gray-100 flex flex-col items-center text-center">
-              <div className="flex items-center justify-center p-4 rounded-full bg-gray-100 mb-6">
-                <MapPin size={32} className="text-gray-400" />
+            <motion.div {...fadeIn} className="bg-white p-10 ring-4 ring-brand-point relative flex flex-col items-center text-center -translate-y-4 shadow-2xl">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-point text-white text-xs font-black px-4 py-1 uppercase tracking-widest">Best Choice</div>
+              <div className="flex items-center justify-center p-4 rounded-full bg-brand-point/10 mb-6">
+                <MapPin size={32} className="text-brand-point" />
               </div>
               <h3 className="text-2xl font-black mb-4">헬스 (회원권)</h3>
               <p className="text-gray-500 mb-8 font-medium">쾌적한 시설과 최신 기구를<br/>자유롭게 이용하는 실속 플랜</p>
@@ -263,7 +264,7 @@ export default function App() {
               <div className="flex items-center justify-center p-4 rounded-full bg-brand-point/10 mb-6">
                 <Activity size={32} className="text-brand-point" />
               </div>
-              <h3 className="text-2xl font-black mb-4">1:1 맞춤형 PT</h3>
+              <h3 className="text-2xl font-black mb-4">1:1 맞춤형 PT&필라테스</h3>
               <p className="text-gray-500 mb-8 font-medium">재활부터 통증 케어, 고강도 근력 증강까지<br/>오직 당신만을 위한 설계</p>
               <ul className="text-left w-full space-y-3 mb-8">
                 {["체형 분석 기반 루틴 설계", "개인 대시보드 리포팅", "식단 및 생활 습관 서포트"].map((t, i) => (
@@ -276,13 +277,14 @@ export default function App() {
             </motion.div>
 
             {/* Pilates */}
-            <motion.div {...fadeIn} className="bg-white p-10 border border-gray-100 flex flex-col items-center text-center">
-              <div className="flex items-center justify-center p-4 rounded-full bg-gray-100 mb-6">
-                <User size={32} className="text-gray-400" />
+            <motion.div {...fadeIn} className="bg-white p-10 ring-4 ring-brand-point relative flex flex-col items-center text-center -translate-y-4 shadow-2xl">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-point text-white text-xs font-black px-4 py-1 uppercase tracking-widest">Best Choice</div>
+              <div className="flex items-center justify-center p-4 rounded-full bg-brand-point/10 mb-6">
+                <User size={32} className="text-brand-point" />
               </div>
-              <h3 className="text-2xl font-black mb-4">기구 필라테스</h3>
-              <p className="text-gray-500 mb-8 font-medium">코어 강화와 유연성 극대화,<br/>여성을 위한 섬세한 교정 수업</p>
-              <div className="mt-auto pt-6 border-t w-full text-sm text-gray-400 font-bold">코어 집중 및 체형 교정 중심</div>
+              <h3 className="text-2xl font-black mb-4">바레 (barre)</h3>
+              <p className="text-gray-500 mb-8 font-medium">우아한 움직임 속 강력한 코어 밸런스를 통해,<br/>선명한 바디라인을 잡아보세요</p>
+              <div className="mt-auto pt-6 border-t w-full text-sm text-gray-400 font-bold">하루 50분 나를위한 가장 우아한 자기관리</div>
             </motion.div>
           </div>
         </div>
