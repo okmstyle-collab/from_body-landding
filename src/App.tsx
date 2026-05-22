@@ -212,7 +212,7 @@ export default function App() {
                 <div className="flex gap-4 items-start text-left">
                   <div className="bg-brand-point/10 p-3 rounded-lg"><Activity className="text-brand-point" size={24} /></div>
                   <div>
-                    <h3 className="text-xl font-bold mb-2">노션 기반 프리미엄 리포트</h3>
+                    <h3 className="text-xl font-bold mb-2 text-balance">AI 체형분석부터 식단까지 철저한 관리 시스템</h3>
                     <p className="text-gray-400 font-medium">오늘의 운동 목표, 수행 능력 변화, 식단 기록까지 한눈에 확인하는 개인 대시보드를 제공합니다.</p>
                   </div>
                 </div>
