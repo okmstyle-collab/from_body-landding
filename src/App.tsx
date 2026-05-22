@@ -364,25 +364,17 @@ export default function App() {
 
       {/* 06. Results/Proof Section */}
       {/* 심리: 사회적 증거 & 후광 효과 */}
-      <section className="section-padding overflow-hidden">
+      <section className="section-padding overflow-hidden bg-brand-point text-white">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-4xl font-black mb-16">프롬바디가 증명한 변화들</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[1, 2, 3, 4].map(i => (
-              <div key={i} className="placeholder aspect-[3/4] group cursor-pointer" data-role={`before_after_${i}`}>
-                {/* [보완 필요] 실제 회원 변화 비포/애프너 사진 */}
-                변화 증명 데이터 {i}
-                <div className="absolute inset-0 bg-brand-point/80 text-white opacity-0 group-hover:opacity-100 flex items-center justify-center p-6 transition-opacity">
-                  <p className="font-black text-sm uppercase leading-tight italic">
-                    Weight -12kg<br/>
-                    Muscle +3kg<br/>
-                    Body Fat -8%
-                  </p>
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            {[1, 2, 3, 4, 5].map(i => (
+              <div key={i} className="rounded-xl overflow-hidden shadow-xl bg-white transform transition-transform hover:-translate-y-2">
+                <img src={`/transformations/transform${i}.jpg`} alt={`프롬바디 변화 증명 ${i}`} className="w-full h-auto object-cover" />
               </div>
             ))}
           </div>
-          <div className="mt-16 flex flex-wrap gap-8 justify-center items-center grayscale opacity-60">
+          <div className="mt-16 flex flex-wrap gap-8 justify-center items-center opacity-80 text-white">
             <div className="font-black text-4xl">500+</div>
             <div className="font-black text-4xl italic">FROMBODY</div>
             <div className="font-black text-4xl tracking-tighter">FITNESS</div>
