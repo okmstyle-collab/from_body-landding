@@ -441,8 +441,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
             <h2 className="text-4xl md:text-6xl font-black mb-8 italic uppercase tracking-tighter">
-              DO IT NOW,<br/>
-              CHANGE YOUR BODY.
+              CHANGE YOUR BODY & LIFE
             </h2>
             <p className="text-xl text-gray-600 mb-10 font-bold">
               오늘의 미룸이 내일의 통증을 만듭니다.<br/>
