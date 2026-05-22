@@ -291,7 +291,7 @@ export default function App() {
       <section id="programs" className="section-padding bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-black mb-6 text-brand-point">최상의 결과를 위한<br/>프롬바디 프로그램</h2>
+            <h2 className="text-4xl font-black mb-6"><span className="text-brand-point">최상의 결과</span>를 위한<br/>프롬바디 프로그램</h2>
             <p className="text-gray-500 font-medium italic">당신의 목적에 맞는 최적의 플랜을 제안합니다.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -366,7 +366,7 @@ export default function App() {
       {/* 심리: 사회적 증거 & 후광 효과 */}
       <section className="section-padding overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-5xl font-black mb-16 break-keep text-brand-point">프롬바디가 증명한 변화들</h2>
+          <h2 className="text-3xl md:text-5xl font-black mb-16 break-keep">프롬바디가 <span className="text-brand-point">증명한 변화들</span></h2>
           <div className="grid grid-rows-2 grid-flow-col auto-cols-[85%] sm:auto-cols-[45%] lg:grid-rows-none lg:grid-flow-row lg:grid-cols-4 lg:auto-cols-auto gap-4 lg:gap-6 overflow-x-auto snap-x snap-mandatory pb-4 lg:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
             {[6, 7, 8, 9, 10, 11, 12, 13].map(i => (
               <div key={i} className="snap-center flex-shrink-0 rounded-xl overflow-hidden shadow-xl bg-white transform transition-transform lg:hover:-translate-y-2">
@@ -386,7 +386,7 @@ export default function App() {
       {/* 06-2. Proof Statistics Section */}
       <section className="section-padding bg-black text-white">
         <div className="max-w-5xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-5xl font-black mb-8 break-keep text-brand-point">처음엔 다들 비슷한 마음으로 오셨습니다.</h2>
+          <h2 className="text-3xl md:text-5xl font-black mb-8 break-keep"><span className="text-brand-point">처음엔</span> 다들 비슷한 마음으로 오셨습니다.</h2>
           <div className="w-12 h-1 bg-brand-point mx-auto mb-10"></div>
           
           <div className="text-gray-400 font-medium space-y-2 mb-10 text-lg">
@@ -419,7 +419,7 @@ export default function App() {
       {/* 06-3. Real Member Reviews Section */}
       <section className="section-padding bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-5xl font-black mb-16 break-keep text-brand-point">프롬바디 실제 회원님들의 후기</h2>
+          <h2 className="text-3xl md:text-5xl font-black mb-16 break-keep">프롬바디 실제 <span className="text-brand-point">회원님들의 후기</span></h2>
           <div className="grid grid-rows-2 grid-flow-col auto-cols-[75%] sm:auto-cols-[45%] lg:grid-rows-none lg:grid-flow-row lg:grid-cols-5 lg:auto-cols-auto gap-4 lg:gap-6 overflow-x-auto snap-x snap-mandatory pb-4 lg:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
             {[
               'review1.png', 'review2.png', 'review3.png', 'review4.png', 'review5.png',
@@ -437,7 +437,7 @@ export default function App() {
       {/* 심리: 목표 그라데이션 효과 - 6단계로 확장하여 신뢰도 강화 */}
       <section className="section-padding bg-brand-outer text-white">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-black mb-16 text-brand-point">프롬바디는 이렇게 시작됩니다</h2>
+          <h2 className="text-3xl md:text-4xl font-black mb-16">프롬바디는 <span className="text-brand-point">이렇게</span> 시작됩니다</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-16 gap-x-6 relative">
             {[
               { num: "01", title: "설문지 작성", desc: "1분이면 됩니다. 이름·연락처·목표만 입력하면 OK" },
