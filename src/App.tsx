@@ -252,6 +252,13 @@ export default function App() {
               </div>
               <h3 className="text-2xl font-black mb-4">헬스 (회원권)</h3>
               <p className="text-gray-500 mb-8 font-medium">쾌적한 시설과 최신 기구를<br/>자유롭게 이용하는 실속 플랜</p>
+              <ul className="text-left w-full space-y-3 mb-8">
+                {["최상급 프리미엄 기구 완비", "여유로운 스트레칭 존", "등록 시 기본 O.T 제공"].map((t, i) => (
+                  <li key={i} className="flex gap-2 text-sm font-bold text-gray-700">
+                    <CheckCircle2 size={16} className="text-brand-point shrink-0" /> {t}
+                  </li>
+                ))}
+              </ul>
               <div className="mt-auto pt-6 border-t w-full text-sm text-gray-400 font-bold">센터 전체 기초 시설 이용 가능</div>
             </motion.div>
 
@@ -282,7 +289,10 @@ export default function App() {
               <div className="flex items-center justify-center p-4 rounded-full bg-brand-point/10 mb-6">
                 <User size={32} className="text-brand-point" />
               </div>
-              <h3 className="text-2xl font-black mb-4">바레 (barre)</h3>
+              <h3 className="text-2xl font-black mb-4 flex items-center justify-center gap-2">
+                바레 (barre)
+                <span className="text-brand-point text-base font-bold">작전점</span>
+              </h3>
               <p className="text-gray-500 mb-8 font-medium">우아한 움직임 속 강력한 코어 밸런스를 통해,<br/>선명한 바디라인을 잡아보세요</p>
               <div className="mt-auto pt-6 border-t w-full text-sm text-gray-400 font-bold">하루 50분 나를위한 가장 우아한 자기관리</div>
             </motion.div>
