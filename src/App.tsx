@@ -165,10 +165,7 @@ export default function App() {
       <section className="section-padding">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
           <div className="w-full md:w-1/2">
-            <div className="placeholder h-[500px] w-full rounded-2xl grayscale" data-role="culture_image">
-              {/* [보완 필요] "할 땐 하고 놀 땐 놀자" 분위기가 느껴지는 지점 사진 */}
-              활기찬 센터 분위기 사진
-            </div>
+            <img src="/culture_image.jpg" alt="활기찬 센터 분위기" className="w-full rounded-2xl shadow-2xl object-cover" />
           </div>
           <div className="w-full md:w-1/2">
             <h2 className="text-4xl md:text-5xl font-black mb-8 leading-tight">
