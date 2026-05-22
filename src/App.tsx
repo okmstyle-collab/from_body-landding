@@ -429,15 +429,25 @@ export default function App() {
       <section className="section-padding bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-5xl font-black mb-16 break-keep">프롬바디 실제 <span className="text-brand-point">회원님들의 후기</span></h2>
-          <div className="grid grid-rows-2 grid-flow-col auto-cols-[75%] sm:auto-cols-[45%] lg:grid-rows-none lg:grid-flow-row lg:grid-cols-5 lg:auto-cols-auto gap-4 lg:gap-6 overflow-x-auto snap-x snap-mandatory pb-4 lg:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
-            {[
-              'review1.png', 'review2.png', 'review3.png', 'review4.png', 'review5.png',
-              'review6.png', 'review7.png', 'review8.png', 'review9.png', 'review10.png'
-            ].map((img, i) => (
-              <div key={i} className="snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow bg-white border border-gray-100">
-                <img src={`/reviews/${img}`} alt={`프롬바디 회원 후기 ${i+1}`} className="w-full h-auto pointer-events-none" />
-              </div>
-            ))}
+          <div className="flex flex-col gap-4 lg:gap-6">
+            <div className="grid grid-flow-col auto-cols-[75%] sm:auto-cols-[45%] md:auto-cols-[30%] lg:auto-cols-[22%] gap-4 lg:gap-6 overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+              {[
+                'review1.png', 'review2.png', 'review3.png', 'review4.png', 'review5.png'
+              ].map((img, i) => (
+                <div key={i} className="snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow bg-white border border-gray-100">
+                  <img src={`/reviews/${img}`} alt={`프롬바디 회원 후기 ${i+1}`} className="w-full h-auto pointer-events-none" />
+                </div>
+              ))}
+            </div>
+            <div className="grid grid-flow-col auto-cols-[75%] sm:auto-cols-[45%] md:auto-cols-[30%] lg:auto-cols-[22%] gap-4 lg:gap-6 overflow-x-auto snap-x snap-mandatory pb-4 lg:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+              {[
+                'review6.png', 'review7.png', 'review8.png', 'review9.png', 'review10.png'
+              ].map((img, i) => (
+                <div key={i+5} className="snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow bg-white border border-gray-100">
+                  <img src={`/reviews/${img}`} alt={`프롬바디 회원 후기 ${i+6}`} className="w-full h-auto pointer-events-none" />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
