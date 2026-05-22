@@ -129,7 +129,7 @@ export default function App() {
       {/* 심리: 부정 편향 - 고통을 구체적으로 명명 */}
       <section id="problem" className="section-padding bg-gray-50 uppercase tracking-tighter">
         <div className="max-w-4xl mx-auto text-center mb-16 px-4">
-          <motion.h2 {...fadeIn} className="text-3xl md:text-4xl font-black mb-6">
+          <motion.h2 {...fadeIn} className="text-5xl md:text-7xl font-black mb-8 leading-tight">
             헬스장에서 효과를 못본건<br/>
             <span className="text-brand-point">당신 탓이 아닙니다.</span>
           </motion.h2>
