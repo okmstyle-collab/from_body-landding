@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { 
   ChevronRight, 
+  ChevronLeft,
   MapPin, 
   Phone, 
   Instagram, 
@@ -13,7 +14,7 @@ import {
   User,
   Activity
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import ConsultationModal from "./components/ConsultationModal";
 
 /**
@@ -26,6 +27,15 @@ import ConsultationModal from "./components/ConsultationModal";
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const reviewRow1Ref = useRef<HTMLDivElement>(null);
+  const reviewRow2Ref = useRef<HTMLDivElement>(null);
+
+  const scrollSlider = (ref: React.RefObject<HTMLDivElement>, direction: 'left' | 'right') => {
+    if (ref.current) {
+      const scrollAmount = ref.current.clientWidth * 0.8;
+      ref.current.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
+    }
+  };
 
   const handleOpenForm = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -430,23 +440,39 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-5xl font-black mb-16 break-keep">프롬바디 실제 <span className="text-brand-point">회원님들의 후기</span></h2>
           <div className="flex flex-col gap-4 lg:gap-6">
-            <div className="grid grid-flow-col auto-cols-[75%] sm:auto-cols-[45%] md:auto-cols-[30%] lg:auto-cols-[22%] gap-4 lg:gap-6 overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
-              {[
-                'review1.png', 'review2.png', 'review3.png', 'review4.png', 'review5.png'
-              ].map((img, i) => (
-                <div key={i} className="snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow bg-white border border-gray-100">
-                  <img src={`/reviews/${img}`} alt={`프롬바디 회원 후기 ${i+1}`} className="w-full h-auto pointer-events-none" />
-                </div>
-              ))}
+            <div className="relative group">
+              <button onClick={() => scrollSlider(reviewRow1Ref, 'left')} className="hidden lg:flex absolute -left-12 top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full items-center justify-center text-gray-600 hover:text-brand-point z-10 transition-colors opacity-0 group-hover:opacity-100">
+                <ChevronLeft size={24} />
+              </button>
+              <button onClick={() => scrollSlider(reviewRow1Ref, 'right')} className="hidden lg:flex absolute -right-12 top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full items-center justify-center text-gray-600 hover:text-brand-point z-10 transition-colors opacity-0 group-hover:opacity-100">
+                <ChevronRight size={24} />
+              </button>
+              <div ref={reviewRow1Ref} className="grid grid-flow-col auto-cols-[75%] sm:auto-cols-[45%] md:auto-cols-[30%] lg:auto-cols-[22%] gap-4 lg:gap-6 overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] scroll-smooth">
+                {[
+                  'review1.png', 'review2.png', 'review3.png', 'review4.png', 'review5.png'
+                ].map((img, i) => (
+                  <div key={i} className="snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow bg-white border border-gray-100">
+                    <img src={`/reviews/${img}`} alt={`프롬바디 회원 후기 ${i+1}`} className="w-full h-auto pointer-events-none" />
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="grid grid-flow-col auto-cols-[75%] sm:auto-cols-[45%] md:auto-cols-[30%] lg:auto-cols-[22%] gap-4 lg:gap-6 overflow-x-auto snap-x snap-mandatory pb-4 lg:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
-              {[
-                'review6.png', 'review7.png', 'review8.png', 'review9.png', 'review10.png'
-              ].map((img, i) => (
-                <div key={i+5} className="snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow bg-white border border-gray-100">
-                  <img src={`/reviews/${img}`} alt={`프롬바디 회원 후기 ${i+6}`} className="w-full h-auto pointer-events-none" />
-                </div>
-              ))}
+            <div className="relative group">
+              <button onClick={() => scrollSlider(reviewRow2Ref, 'left')} className="hidden lg:flex absolute -left-12 top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full items-center justify-center text-gray-600 hover:text-brand-point z-10 transition-colors opacity-0 group-hover:opacity-100">
+                <ChevronLeft size={24} />
+              </button>
+              <button onClick={() => scrollSlider(reviewRow2Ref, 'right')} className="hidden lg:flex absolute -right-12 top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full items-center justify-center text-gray-600 hover:text-brand-point z-10 transition-colors opacity-0 group-hover:opacity-100">
+                <ChevronRight size={24} />
+              </button>
+              <div ref={reviewRow2Ref} className="grid grid-flow-col auto-cols-[75%] sm:auto-cols-[45%] md:auto-cols-[30%] lg:auto-cols-[22%] gap-4 lg:gap-6 overflow-x-auto snap-x snap-mandatory pb-4 lg:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] scroll-smooth">
+                {[
+                  'review6.png', 'review7.png', 'review8.png', 'review9.png', 'review10.png'
+                ].map((img, i) => (
+                  <div key={i+5} className="snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow bg-white border border-gray-100">
+                    <img src={`/reviews/${img}`} alt={`프롬바디 회원 후기 ${i+6}`} className="w-full h-auto pointer-events-none" />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
