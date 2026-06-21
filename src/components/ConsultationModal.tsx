@@ -42,7 +42,6 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
       for (let i = 10; i <= 18; i++) {
         const hour = i < 10 ? `0${i}` : `${i}`;
         times.push(`${hour}:00`);
-        if (i !== 18) times.push(`${hour}:30`);
       }
       setAvailableTimes(times);
       setTimeMessage("주말/공휴일 운영시간: 10:00 - 18:00");
@@ -51,7 +50,6 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
       for (let i = 8; i <= 22; i++) {
         const hour = i < 10 ? `0${i}` : `${i}`;
         times.push(`${hour}:00`);
-        if (i !== 22) times.push(`${hour}:30`);
       }
       setAvailableTimes(times);
       setTimeMessage("평일 운영시간: 08:00 - 22:00");
