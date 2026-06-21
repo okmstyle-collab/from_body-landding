@@ -10,6 +10,54 @@ interface ConsultationModalProps {
 export default function ConsultationModal({ isOpen, onClose }: ConsultationModalProps) {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  const [selectedDate, setSelectedDate] = useState("");
+  const [availableTimes, setAvailableTimes] = useState<string[]>([]);
+  const [timeMessage, setTimeMessage] = useState("");
+
+  const holidays = [
+    "2026-01-01", "2026-02-16", "2026-02-17", "2026-02-18", "2026-03-01",
+    "2026-05-05", "2026-05-24", "2026-06-06", "2026-08-15", "2026-09-24",
+    "2026-09-25", "2026-09-26", "2026-10-03", "2026-10-09", "2026-12-25"
+  ];
+
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const dateStr = e.target.value;
+    setSelectedDate(dateStr);
+    
+    if (!dateStr) {
+      setAvailableTimes([]);
+      setTimeMessage("");
+      return;
+    }
+
+    const date = new Date(dateStr);
+    const day = date.getDay();
+    const isHoliday = holidays.includes(dateStr);
+
+    if (day === 0) {
+      setAvailableTimes([]);
+      setTimeMessage("일요일은 휴무입니다.");
+    } else if (day === 6 || isHoliday) {
+      const times = [];
+      for (let i = 10; i <= 18; i++) {
+        const hour = i < 10 ? `0${i}` : `${i}`;
+        times.push(`${hour}:00`);
+        if (i !== 18) times.push(`${hour}:30`);
+      }
+      setAvailableTimes(times);
+      setTimeMessage("주말/공휴일 운영시간: 10:00 - 18:00");
+    } else {
+      const times = [];
+      for (let i = 8; i <= 22; i++) {
+        const hour = i < 10 ? `0${i}` : `${i}`;
+        times.push(`${hour}:00`);
+        if (i !== 22) times.push(`${hour}:30`);
+      }
+      setAvailableTimes(times);
+      setTimeMessage("평일 운영시간: 08:00 - 22:00");
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -18,7 +66,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
       phone: formData.get("phone"),
       branch: formData.get("branch"),
       goal: formData.get("goal"),
-      time: formData.get("time"),
+      time: `${formData.get("date")} ${formData.get("time")}`,
       inquiries: formData.get("inquiries"),
     };
 
@@ -36,12 +84,23 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
       setIsSubmitted(true);
       setTimeout(() => {
         setIsSubmitted(false);
+        setSelectedDate("");
+        setAvailableTimes([]);
+        setTimeMessage("");
         onClose();
       }, 2000);
     } catch (error) {
       console.error(error);
       alert("전송 중 오류가 발생했습니다. 나중에 다시 시도해주세요.");
     }
+  };
+
+  // 현재 한국 시간 기준으로 오늘 날짜(YYYY-MM-DD) 구하기
+  const getTodayKST = () => {
+    const now = new Date();
+    const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+    const kst = new Date(utc + (9 * 3600000));
+    return kst.toISOString().split('T')[0];
   };
 
   return (
@@ -132,12 +191,20 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                     </select>
                   </div>
 
-
-
-                  <div className="space-y-1.5">
-                    <label className="text-sm font-bold text-gray-700">상담 희망 시간 <span className="text-brand-point">*</span></label>
-                    <input required name="time" type="text" placeholder="예) 평일 오후 7시 이후, 주말 오전" className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-point focus:ring-1 focus:ring-brand-point outline-none transition-all font-medium" />
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-1.5">
+                      <label className="text-sm font-bold text-gray-700">상담 희망 일자 <span className="text-brand-point">*</span></label>
+                      <input required name="date" type="date" min={getTodayKST()} value={selectedDate} onChange={handleDateChange} className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-point focus:ring-1 focus:ring-brand-point outline-none transition-all font-medium bg-white" />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className="text-sm font-bold text-gray-700">상담 희망 시간 <span className="text-brand-point">*</span></label>
+                      <select required name="time" disabled={availableTimes.length === 0} className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-point focus:ring-1 focus:ring-brand-point outline-none transition-all font-medium appearance-none bg-white disabled:bg-gray-100 disabled:text-gray-400">
+                        <option value="">{availableTimes.length === 0 ? "일자 선택 필요" : "시간 선택"}</option>
+                        {availableTimes.map(t => <option key={t} value={t}>{t}</option>)}
+                      </select>
+                    </div>
                   </div>
+                  {timeMessage && <p className={`text-xs mt-1 -translate-y-2 ${selectedDate && new Date(selectedDate).getDay() === 0 ? 'text-red-500' : 'text-brand-point'}`}>{timeMessage}</p>}
 
                   <div className="space-y-1.5">
                     <label className="text-sm font-bold text-gray-700">문의사항 (자유롭게 작성해주세요)</label>
