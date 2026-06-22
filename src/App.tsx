@@ -64,6 +64,7 @@ export default function App() {
             <a href="#problem" className="hover:text-brand-point transition-colors">운동고민</a>
             <a href="#system" className="hover:text-brand-point transition-colors">관리시스템</a>
             <a href="#programs" className="hover:text-brand-point transition-colors">프로그램</a>
+            <a href="#branches" className="hover:text-brand-point transition-colors">지점안내</a>
             <a href="#faq" className="hover:text-brand-point transition-colors">FAQ</a>
             <a href="#" onClick={handleOpenForm} className="btn-primary py-2 px-6 text-sm">무료 운동처방 신청</a>
           </div>
@@ -78,6 +79,7 @@ export default function App() {
             <a href="#problem" onClick={() => setIsMenuOpen(false)}>운동고민</a>
             <a href="#system" onClick={() => setIsMenuOpen(false)}>관리시스템</a>
             <a href="#programs" onClick={() => setIsMenuOpen(false)}>프로그램</a>
+            <a href="#branches" onClick={() => setIsMenuOpen(false)}>지점안내</a>
             <a href="#faq" onClick={() => setIsMenuOpen(false)}>FAQ</a>
             <a href="#" onClick={handleOpenForm} className="btn-primary">무료 운동처방 신청</a>
           </div>
@@ -503,6 +505,108 @@ export default function App() {
           </div>
           <div className="mt-20">
             <a href="#" onClick={handleOpenForm} className="btn-primary">간편 상담 예약하기</a>
+          </div>
+        </div>
+      </section>
+
+      {/* 06. Branches Section */}
+      <section id="branches" className="section-padding bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div {...fadeIn} className="text-center mb-16">
+            <h2 className="text-4xl font-black mb-4">가까운 <span className="text-brand-point">프롬바디</span> 지점 찾기</h2>
+            <p className="text-gray-500 font-medium">전 지점 동일한 퀄리티의 프리미엄 관리를 약속합니다.</p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Songdo */}
+            <motion.div {...fadeIn} className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 flex flex-col">
+              <div className="h-64 w-full bg-gray-200">
+                <iframe 
+                  width="100%" 
+                  height="100%" 
+                  frameBorder="0" 
+                  style={{ border: 0 }}
+                  src="https://www.google.com/maps?q=프롬바디피트니스+송도점&output=embed" 
+                  allowFullScreen
+                ></iframe>
+              </div>
+              <div className="p-6 flex-1 flex flex-col">
+                <div className="flex items-center gap-2 mb-2">
+                  <MapPin className="text-brand-point" size={20} />
+                  <h3 className="text-xl font-bold">송도점 (인천대입구역)</h3>
+                </div>
+                <p className="text-gray-500 text-sm mb-4 break-keep">
+                  인천광역시 연수구 하모니로138번길 11<br/>
+                  (송도캐슬센트럴파크) 102동 324호
+                </p>
+                <div className="mt-auto">
+                  <a href="#" onClick={handleOpenForm} className="w-full btn-primary py-3 text-sm flex justify-center items-center gap-2">
+                    송도점 방문 상담 예약
+                    <ArrowRight size={16} />
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Jakjeon */}
+            <motion.div {...fadeIn} className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 flex flex-col">
+              <div className="h-64 w-full bg-gray-200">
+                <iframe 
+                  width="100%" 
+                  height="100%" 
+                  frameBorder="0" 
+                  style={{ border: 0 }}
+                  src="https://www.google.com/maps?q=프롬바디피트니스+작전점&output=embed" 
+                  allowFullScreen
+                ></iframe>
+              </div>
+              <div className="p-6 flex-1 flex flex-col">
+                <div className="flex items-center gap-2 mb-2">
+                  <MapPin className="text-brand-point" size={20} />
+                  <h3 className="text-xl font-bold">작전점</h3>
+                </div>
+                <p className="text-gray-500 text-sm mb-4 break-keep">
+                  인천광역시 계양구 장제로 708<br/>
+                  한샘프라자 2층
+                </p>
+                <div className="mt-auto">
+                  <a href="#" onClick={handleOpenForm} className="w-full btn-primary py-3 text-sm flex justify-center items-center gap-2">
+                    작전점 방문 상담 예약
+                    <ArrowRight size={16} />
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Bupyeong */}
+            <motion.div {...fadeIn} className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 flex flex-col">
+              <div className="h-64 w-full bg-gray-200">
+                <iframe 
+                  width="100%" 
+                  height="100%" 
+                  frameBorder="0" 
+                  style={{ border: 0 }}
+                  src="https://www.google.com/maps?q=프롬바디피트니스+부평점&output=embed" 
+                  allowFullScreen
+                ></iframe>
+              </div>
+              <div className="p-6 flex-1 flex flex-col">
+                <div className="flex items-center gap-2 mb-2">
+                  <MapPin className="text-brand-point" size={20} />
+                  <h3 className="text-xl font-bold">부평점</h3>
+                </div>
+                <p className="text-gray-500 text-sm mb-4 break-keep">
+                  인천광역시 부평구 경원대로 1404<br/>
+                  그랑프리빌딩 4층 405호
+                </p>
+                <div className="mt-auto">
+                  <a href="#" onClick={handleOpenForm} className="w-full btn-primary py-3 text-sm flex justify-center items-center gap-2">
+                    부평점 방문 상담 예약
+                    <ArrowRight size={16} />
+                  </a>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
