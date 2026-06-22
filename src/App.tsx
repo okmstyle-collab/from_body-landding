@@ -521,15 +521,15 @@ export default function App() {
             {/* Songdo */}
             <motion.div {...fadeIn} className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 flex flex-col">
               <a 
-                href="https://map.kakao.com/link/map/프롬바디피트니스 송도점,37.384666,126.643232" 
+                href="https://map.naver.com/p/search/프롬바디피트니스 송도점" 
                 target="_blank" 
                 rel="noreferrer" 
                 className="h-64 w-full bg-gray-200 relative block group overflow-hidden cursor-pointer"
               >
                 <img src="/map_placeholder.png" alt="송도점 지도" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="bg-brand-point text-white font-bold py-2 px-5 rounded-full shadow-xl flex items-center gap-2">
-                    <MapPin size={18} /> 카카오맵 길찾기
+                  <div className="bg-[#03c75a] text-white font-bold py-2 px-5 rounded-full shadow-xl flex items-center gap-2">
+                    <MapPin size={18} /> 네이버지도 길찾기
                   </div>
                 </div>
               </a>
@@ -554,15 +554,15 @@ export default function App() {
             {/* Jakjeon */}
             <motion.div {...fadeIn} className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 flex flex-col">
               <a 
-                href="https://map.kakao.com/link/map/프롬바디피트니스 작전점,37.525656,126.722283" 
+                href="https://map.naver.com/p/search/프롬바디피트니스 작전점" 
                 target="_blank" 
                 rel="noreferrer" 
                 className="h-64 w-full bg-gray-200 relative block group overflow-hidden cursor-pointer"
               >
                 <img src="/map_placeholder.png" alt="작전점 지도" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="bg-brand-point text-white font-bold py-2 px-5 rounded-full shadow-xl flex items-center gap-2">
-                    <MapPin size={18} /> 카카오맵 길찾기
+                  <div className="bg-[#03c75a] text-white font-bold py-2 px-5 rounded-full shadow-xl flex items-center gap-2">
+                    <MapPin size={18} /> 네이버지도 길찾기
                   </div>
                 </div>
               </a>
@@ -587,15 +587,15 @@ export default function App() {
             {/* Bupyeong */}
             <motion.div {...fadeIn} className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 flex flex-col">
               <a 
-                href="https://map.kakao.com/link/map/프롬바디피트니스 부평점,37.489772,126.722521" 
+                href="https://map.naver.com/p/search/프롬바디피트니스 부평점" 
                 target="_blank" 
                 rel="noreferrer" 
                 className="h-64 w-full bg-gray-200 relative block group overflow-hidden cursor-pointer"
               >
                 <img src="/map_placeholder.png" alt="부평점 지도" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="bg-brand-point text-white font-bold py-2 px-5 rounded-full shadow-xl flex items-center gap-2">
-                    <MapPin size={18} /> 카카오맵 길찾기
+                  <div className="bg-[#03c75a] text-white font-bold py-2 px-5 rounded-full shadow-xl flex items-center gap-2">
+                    <MapPin size={18} /> 네이버지도 길찾기
                   </div>
                 </div>
               </a>
