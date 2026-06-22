@@ -115,7 +115,7 @@ export default function App() {
               <span className="text-brand-point">가장 신뢰가는</span><br/>
               프롬바디 피트니스
             </h1>
-            <div className="text-lg md:text-xl text-white/95 mb-10 leading-relaxed font-bold break-keep space-y-2">
+            <div className="text-[13px] sm:text-sm md:text-xl tracking-tighter sm:tracking-normal whitespace-nowrap md:whitespace-normal text-white/95 mb-10 leading-relaxed font-bold space-y-2">
               <p>“포기했던 건 의지가 아니라 시스템이 없었기 때문입니다.”</p>
               <p>“반복되는 통증, 오늘 정확히 원인을 확인해보세요.”</p>
               <p>“PT 강요 없이 먼저 몸 상태와 공간부터 확인하세요.”</p>
