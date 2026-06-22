@@ -16,7 +16,6 @@ import {
 } from "lucide-react";
 import React, { useState, useRef } from "react";
 import ConsultationModal from "./components/ConsultationModal";
-import { Map, MapMarker, useKakaoLoader } from "react-kakao-maps-sdk";
 
 /**
  * [헤드라인 대안 리스트]
@@ -30,11 +29,6 @@ export default function App() {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const reviewRow1Ref = useRef<HTMLDivElement>(null);
   const reviewRow2Ref = useRef<HTMLDivElement>(null);
-
-  const kakaoAppKey = import.meta.env.VITE_KAKAO_APP_KEY;
-  useKakaoLoader({
-    appkey: kakaoAppKey || "dummy",
-  });
 
   const scrollSlider = (ref: React.RefObject<HTMLDivElement>, direction: 'left' | 'right') => {
     if (ref.current) {
@@ -526,22 +520,19 @@ export default function App() {
           <div className="grid md:grid-cols-3 gap-8">
             {/* Songdo */}
             <motion.div {...fadeIn} className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 flex flex-col">
-              <div className="h-64 w-full bg-gray-200 relative">
-                {kakaoAppKey ? (
-                  <Map
-                    center={{ lat: 37.384666, lng: 126.643232 }}
-                    style={{ width: "100%", height: "100%", position: "absolute" }}
-                    level={3}
-                  >
-                    <MapMarker position={{ lat: 37.384666, lng: 126.643232 }} />
-                  </Map>
-                ) : (
-                  <div className="w-full h-full flex flex-col items-center justify-center bg-gray-100 p-4 text-center">
-                    <p className="text-sm font-bold text-gray-500 mb-1">카카오맵 API 키 필요</p>
-                    <p className="text-xs text-gray-400">환경변수에 키를 등록해주세요.</p>
+              <a 
+                href="https://map.kakao.com/link/map/프롬바디피트니스 송도점,37.384666,126.643232" 
+                target="_blank" 
+                rel="noreferrer" 
+                className="h-64 w-full bg-gray-200 relative block group overflow-hidden cursor-pointer"
+              >
+                <img src="/map_placeholder.png" alt="송도점 지도" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="bg-brand-point text-white font-bold py-2 px-5 rounded-full shadow-xl flex items-center gap-2">
+                    <MapPin size={18} /> 카카오맵 길찾기
                   </div>
-                )}
-              </div>
+                </div>
+              </a>
               <div className="p-6 flex-1 flex flex-col">
                 <div className="flex items-center gap-2 mb-2">
                   <MapPin className="text-brand-point" size={20} />
@@ -562,22 +553,19 @@ export default function App() {
 
             {/* Jakjeon */}
             <motion.div {...fadeIn} className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 flex flex-col">
-              <div className="h-64 w-full bg-gray-200 relative">
-                {kakaoAppKey ? (
-                  <Map
-                    center={{ lat: 37.525656, lng: 126.722283 }}
-                    style={{ width: "100%", height: "100%", position: "absolute" }}
-                    level={3}
-                  >
-                    <MapMarker position={{ lat: 37.525656, lng: 126.722283 }} />
-                  </Map>
-                ) : (
-                  <div className="w-full h-full flex flex-col items-center justify-center bg-gray-100 p-4 text-center">
-                    <p className="text-sm font-bold text-gray-500 mb-1">카카오맵 API 키 필요</p>
-                    <p className="text-xs text-gray-400">환경변수에 키를 등록해주세요.</p>
+              <a 
+                href="https://map.kakao.com/link/map/프롬바디피트니스 작전점,37.525656,126.722283" 
+                target="_blank" 
+                rel="noreferrer" 
+                className="h-64 w-full bg-gray-200 relative block group overflow-hidden cursor-pointer"
+              >
+                <img src="/map_placeholder.png" alt="작전점 지도" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="bg-brand-point text-white font-bold py-2 px-5 rounded-full shadow-xl flex items-center gap-2">
+                    <MapPin size={18} /> 카카오맵 길찾기
                   </div>
-                )}
-              </div>
+                </div>
+              </a>
               <div className="p-6 flex-1 flex flex-col">
                 <div className="flex items-center gap-2 mb-2">
                   <MapPin className="text-brand-point" size={20} />
@@ -598,22 +586,19 @@ export default function App() {
 
             {/* Bupyeong */}
             <motion.div {...fadeIn} className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 flex flex-col">
-              <div className="h-64 w-full bg-gray-200 relative">
-                {kakaoAppKey ? (
-                  <Map
-                    center={{ lat: 37.489772, lng: 126.722521 }}
-                    style={{ width: "100%", height: "100%", position: "absolute" }}
-                    level={3}
-                  >
-                    <MapMarker position={{ lat: 37.489772, lng: 126.722521 }} />
-                  </Map>
-                ) : (
-                  <div className="w-full h-full flex flex-col items-center justify-center bg-gray-100 p-4 text-center">
-                    <p className="text-sm font-bold text-gray-500 mb-1">카카오맵 API 키 필요</p>
-                    <p className="text-xs text-gray-400">환경변수에 키를 등록해주세요.</p>
+              <a 
+                href="https://map.kakao.com/link/map/프롬바디피트니스 부평점,37.489772,126.722521" 
+                target="_blank" 
+                rel="noreferrer" 
+                className="h-64 w-full bg-gray-200 relative block group overflow-hidden cursor-pointer"
+              >
+                <img src="/map_placeholder.png" alt="부평점 지도" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="bg-brand-point text-white font-bold py-2 px-5 rounded-full shadow-xl flex items-center gap-2">
+                    <MapPin size={18} /> 카카오맵 길찾기
                   </div>
-                )}
-              </div>
+                </div>
+              </a>
               <div className="p-6 flex-1 flex flex-col">
                 <div className="flex items-center gap-2 mb-2">
                   <MapPin className="text-brand-point" size={20} />
