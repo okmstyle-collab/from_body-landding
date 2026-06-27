@@ -117,8 +117,16 @@ const programs = [
     icon: Activity,
   },
   {
+    id: "passive-stretching",
+    title: "패시브 스트레칭",
+    desc: "혼자 풀기 어려운 목, 어깨, 허리 긴장을 전문가의 보조로 편안하게 회복하고 싶은 분께 적합합니다.",
+    points: ["누워서 받는 회복 스트레칭", "목·어깨·허리 긴장 완화", "운동 전후 컨디션 관리"],
+    icon: CheckCircle2,
+  },
+  {
     id: "barre",
     title: "바레 클래스",
+    location: "작전점",
     desc: "작전점에서 운영하는 프로그램으로 코어, 자세, 바디라인 관리를 원하는 분께 적합합니다.",
     points: ["발레 동작 기반 저충격 운동", "코어 중심 실루엣 정리", "하루 50분 자기관리"],
     icon: User,
@@ -525,7 +533,7 @@ export default function App() {
               <p className="break-keep text-lg font-medium text-gray-500">어떤 프로그램이 맞는지는 방문 상담에서 함께 확인합니다.</p>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
               {programs.map((program) => {
                 const Icon = program.icon;
                 return (
@@ -533,7 +541,14 @@ export default function App() {
                     <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-point/10 text-brand-point">
                       <Icon size={32} />
                     </div>
-                    <h3 className="mb-4 break-keep text-2xl font-black">{program.title}</h3>
+                    <h3 className="mb-4 flex flex-wrap items-center gap-2 break-keep text-2xl font-black">
+                      {program.title}
+                      {"location" in program && program.location && (
+                        <span className="rounded-full bg-brand-point/10 px-3 py-1 text-sm font-black text-brand-point">
+                          {program.location}
+                        </span>
+                      )}
+                    </h3>
                     <p className="mb-6 break-keep font-medium leading-relaxed text-gray-500">{program.desc}</p>
                     <ul className="mt-auto space-y-3">
                       {program.points.map((point) => (
