@@ -1,28 +1,184 @@
 import { motion } from "motion/react";
-import { 
-  ChevronRight, 
-  ChevronLeft,
-  MapPin, 
-  Phone, 
-  Instagram, 
-  MessageCircle, 
-  CheckCircle2, 
+import {
+  Activity,
   ArrowRight,
+  CheckCircle2,
+  ChevronLeft,
+  ChevronRight,
+  Instagram,
+  MapPin,
   Menu,
-  X,
-  CreditCard,
+  MessageCircle,
+  Phone,
   User,
-  Activity
+  X,
 } from "lucide-react";
-import React, { useState, useRef } from "react";
+import React, { useRef, useState } from "react";
 import ConsultationModal from "./components/ConsultationModal";
 
-/**
- * [헤드라인 대안 리스트]
- * 1. "할 땐 하고 놀 땐 노는, 당신을 위한 진짜 운동 파트너"
- * 2. "인천 직장인들이 검증한 통증 해결의 정석, 프롬바디" (선택됨)
- * 3. "당신의 인생 마지막 PT가 될 데이터 기반 맞춤 관리"
- */
+const CTA_TEXT = "무료 운동진단 예약하기";
+
+const navItems = [
+  { href: "#offer", label: "무료진단" },
+  { href: "#process", label: "진행과정" },
+  { href: "#proof", label: "후기/증거" },
+  { href: "#branches", label: "지점안내" },
+  { href: "#faq", label: "FAQ" },
+];
+
+const problemCards = [
+  {
+    id: "routine",
+    tag: "ROUTINE",
+    title: "등록만 하고 안 가게 됨",
+    desc: "처음엔 의욕이 있었지만 막상 가면 뭘 해야 할지 몰라 런닝머신만 타게 됩니다.",
+  },
+  {
+    id: "burden",
+    tag: "BURDEN",
+    title: "PT는 부담스럽고 혼자는 막막함",
+    desc: "비용도 부담되고, 강요받을까 걱정돼 시작 자체를 미루게 됩니다.",
+  },
+  {
+    id: "body",
+    tag: "BODY",
+    title: "통증·체형·다이어트가 같이 꼬임",
+    desc: "허리, 어깨, 거북목, 체중 변화까지 어디서부터 해결해야 할지 막막합니다.",
+  },
+];
+
+const offerItems = [
+  {
+    id: "inbody",
+    title: "인바디 측정",
+    desc: "체중만 보는 것이 아니라 근육량, 체지방률, 신체 균형을 함께 확인합니다.",
+    icon: Activity,
+  },
+  {
+    id: "ai-posture",
+    title: "AI 체형분석",
+    desc: "라운드숄더, 골반, 자세 불균형 등 현재 몸 상태를 시각적으로 확인합니다.",
+    icon: User,
+  },
+  {
+    id: "routine",
+    title: "1:1 운동 루틴 처방",
+    desc: "다이어트, 근력증가, 체형교정, 통증케어 중 내 목표에 맞는 운동 방향을 제안받습니다.",
+    icon: CheckCircle2,
+  },
+];
+
+const processSteps = [
+  {
+    id: "apply",
+    num: "01",
+    title: "10초 신청",
+    desc: "이름, 연락처, 희망 지점과 가장 큰 고민만 남겨주세요.",
+  },
+  {
+    id: "call",
+    num: "02",
+    title: "담당자 연락",
+    desc: "방문 가능한 시간과 가까운 지점을 확인해드립니다.",
+  },
+  {
+    id: "diagnosis",
+    num: "03",
+    title: "무료 운동진단 방문",
+    desc: "인바디, 체형분석, 운동목표 상담을 함께 진행합니다.",
+  },
+  {
+    id: "routine",
+    num: "04",
+    title: "나에게 맞는 시작 방법 안내",
+    desc: "시설 이용만 할지, PT와 함께할지 상담 후 편하게 결정하시면 됩니다.",
+  },
+];
+
+const stats = [
+  { id: "renewal", value: "85%", label: "시설 이용권 재등록률" },
+  { id: "satisfaction", value: "90%", label: "회원 평균 만족도" },
+  { id: "completion", value: "95%", label: "PT 완주율" },
+];
+
+const programs = [
+  {
+    id: "membership",
+    title: "헬스 회원권",
+    desc: "혼자 운동하고 싶지만 기구 사용법과 루틴이 필요한 분께 적합합니다.",
+    points: ["프리미엄 기구 이용", "기본 O.T 제공", "목적별 루틴 방향 안내"],
+    icon: MapPin,
+  },
+  {
+    id: "pt-pilates",
+    title: "1:1 PT & 필라테스",
+    desc: "체형교정, 통증케어, 다이어트, 근력증가처럼 목표가 명확한 분께 적합합니다.",
+    points: ["체형 분석 기반 루틴 설계", "운동·식단·습관 관리", "개인 목표별 피드백"],
+    icon: Activity,
+  },
+  {
+    id: "barre",
+    title: "바레 클래스",
+    desc: "작전점에서 운영하는 프로그램으로 코어, 자세, 바디라인 관리를 원하는 분께 적합합니다.",
+    points: ["발레 동작 기반 저충격 운동", "코어 중심 실루엣 정리", "하루 50분 자기관리"],
+    icon: User,
+  },
+];
+
+const branches = [
+  {
+    id: "songdo",
+    name: "송도점",
+    title: "송도점 (인천대입구역)",
+    address: ["인천광역시 연수구 하모니로138번길 11", "(송도캐슬센트럴파크) 102동 324호"],
+    mapUrl: "https://map.naver.com/p/search/프롬바디피트니스 송도점",
+    phone: "032)834-0401",
+  },
+  {
+    id: "jakjeon",
+    name: "작전점",
+    title: "작전점",
+    address: ["인천광역시 계양구 장제로 708", "한샘프라자 2층"],
+    mapUrl: "https://map.naver.com/p/search/프롬바디피트니스 작전점",
+    phone: "032)553-0401",
+  },
+  {
+    id: "bupyeong",
+    name: "부평점",
+    title: "부평점",
+    address: ["인천광역시 부평구 경원대로 1404", "그랑프리빌딩 4층 405호"],
+    mapUrl: "https://map.naver.com/p/search/프롬바디피트니스 부평점",
+    phone: "032)719-3336",
+  },
+];
+
+const faqs = [
+  {
+    id: "beginner",
+    q: "운동을 한 번도 안 해봤는데 괜찮을까요?",
+    a: "네. 프롬바디는 운동 초보 회원 상담이 많습니다. 처음부터 잘하는 것보다, 내 몸에 맞는 방법을 찾는 것부터 시작합니다.",
+  },
+  {
+    id: "pressure",
+    q: "상담 받으면 꼭 등록해야 하나요?",
+    a: "아닙니다. 무료 운동진단 후 등록 여부는 직접 결정하시면 됩니다. 강요 없이 몸 상태와 운동 방향을 안내드립니다.",
+  },
+  {
+    id: "price",
+    q: "PT 가격이 부담스러운데 괜찮을까요?",
+    a: "상담 시 회원권, PT, 필라테스, 바레 등 목표와 예산에 맞는 선택지를 안내드립니다. 바로 PT를 결정하지 않아도 됩니다.",
+  },
+  {
+    id: "branch",
+    q: "어떤 지점으로 가야 하나요?",
+    a: "송도, 작전, 부평 중 생활 동선에 가까운 지점을 선택하시면 됩니다. 신청 후 담당자가 방문 시간을 도와드립니다.",
+  },
+  {
+    id: "time",
+    q: "무료 운동진단은 얼마나 걸리나요?",
+    a: "보통 30~50분 정도 소요됩니다. 인바디 측정, 체형 확인, 목표 상담이 함께 진행됩니다.",
+  },
+];
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,677 +186,504 @@ export default function App() {
   const reviewRow1Ref = useRef<HTMLDivElement>(null);
   const reviewRow2Ref = useRef<HTMLDivElement>(null);
 
-  const scrollSlider = (ref: React.RefObject<HTMLDivElement>, direction: 'left' | 'right') => {
-    if (ref.current) {
-      const scrollAmount = ref.current.clientWidth * 0.8;
-      ref.current.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
-    }
+  const fadeIn = {
+    initial: { opacity: 0, y: 22 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.6 },
   };
 
-  const handleOpenForm = (e: React.MouseEvent) => {
-    e.preventDefault();
+  const openForm = (e?: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
+    e?.preventDefault();
     setIsFormOpen(true);
     setIsMenuOpen(false);
   };
 
-  const fadeIn = {
-    initial: { opacity: 0, y: 20 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true },
-    transition: { duration: 0.6 }
+  const scrollSlider = (ref: React.RefObject<HTMLDivElement>, direction: "left" | "right") => {
+    if (!ref.current) return;
+    const scrollAmount = ref.current.clientWidth * 0.8;
+    ref.current.scrollBy({
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
+    });
   };
 
-  const ctaLink = "#"; // 나중에 상담신청 링크로 교체 예정
-
   return (
-    <div className="flex flex-col w-full min-h-screen">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="font-black text-2xl tracking-tighter text-brand-point italic">
+    <div className="flex min-h-screen w-full flex-col bg-white text-brand-outer">
+      <nav className="fixed top-0 z-50 w-full border-b border-white/10 bg-black/85 text-white backdrop-blur-md">
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+          <a href="#" className="text-2xl font-black italic tracking-tighter text-brand-point">
             FROMBODY
+          </a>
+
+          <div className="hidden items-center gap-8 text-sm font-bold md:flex">
+            {navItems.map((item) => (
+              <a key={item.href} href={item.href} className="transition-colors hover:text-brand-point">
+                {item.label}
+              </a>
+            ))}
+            <a href="#" onClick={openForm} className="btn-primary px-6 py-2 text-sm">
+              {CTA_TEXT}
+            </a>
           </div>
-          <div className="hidden md:flex gap-8 font-medium text-sm items-center">
-            <a href="#problem" className="hover:text-brand-point transition-colors">운동고민</a>
-            <a href="#system" className="hover:text-brand-point transition-colors">관리시스템</a>
-            <a href="#programs" className="hover:text-brand-point transition-colors">프로그램</a>
-            <a href="#branches" className="hover:text-brand-point transition-colors">지점안내</a>
-            <a href="#faq" className="hover:text-brand-point transition-colors">FAQ</a>
-            <a href="#" onClick={handleOpenForm} className="btn-primary py-2 px-6 text-sm">무료 운동처방 신청</a>
-          </div>
-          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+
+          <button
+            type="button"
+            aria-label={isMenuOpen ? "메뉴 닫기" : "메뉴 열기"}
+            className="md:hidden"
+            onClick={() => setIsMenuOpen((current) => !current)}
+          >
             {isMenuOpen ? <X /> : <Menu />}
           </button>
         </div>
-        
-        {/* Mobile menu */}
+
         {isMenuOpen && (
-          <div className="md:hidden bg-white px-6 py-8 flex flex-col gap-6 font-bold absolute w-full border-b shadow-xl">
-            <a href="#problem" onClick={() => setIsMenuOpen(false)}>운동고민</a>
-            <a href="#system" onClick={() => setIsMenuOpen(false)}>관리시스템</a>
-            <a href="#programs" onClick={() => setIsMenuOpen(false)}>프로그램</a>
-            <a href="#branches" onClick={() => setIsMenuOpen(false)}>지점안내</a>
-            <a href="#faq" onClick={() => setIsMenuOpen(false)}>FAQ</a>
-            <a href="#" onClick={handleOpenForm} className="btn-primary">무료 운동처방 신청</a>
+          <div className="absolute flex w-full flex-col gap-6 border-b border-gray-100 bg-white px-6 py-8 font-bold text-black shadow-xl md:hidden">
+            {navItems.map((item) => (
+              <a key={item.href} href={item.href} onClick={() => setIsMenuOpen(false)}>
+                {item.label}
+              </a>
+            ))}
+            <a href="#" onClick={openForm} className="btn-primary">
+              {CTA_TEXT}
+            </a>
           </div>
         )}
       </nav>
 
-      {/* 01. Hero Section */}
-      {/* 심리: 호기심의 틈 & 주목 효과 */}
-      <section className="relative min-h-[90vh] flex items-center pt-20 overflow-hidden bg-brand-outer">
-        <div className="absolute inset-0 z-0 opacity-40">
-          <video 
-            autoPlay 
-            loop 
-            muted
-            playsInline 
-            className="w-full h-full object-cover"
-          >
-            <source src="/0501.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <div className="container mx-auto px-6 relative z-10">
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-3xl"
-          >
-            <div className="inline-block bg-brand-point text-white text-xs font-bold px-3 py-1 rounded-sm mb-6 tracking-widest uppercase">
-              10 Years of Trust in Incheon
-            </div>
-            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black text-white leading-[1.2] md:leading-[1.1] break-keep tracking-tight mb-8">
-              <span className="whitespace-nowrap">인천에서 10년간 운영한</span><br/>
-              <span className="text-brand-point">가장 신뢰가는</span><br/>
-              프롬바디 피트니스
-            </h1>
-            <div className="text-[3vw] min-[450px]:text-[14px] md:text-xl whitespace-nowrap text-white/95 mb-10 leading-relaxed font-bold space-y-2">
-              <p>“포기했던 건 의지가 아니라 시스템이 없었기 때문입니다.”</p>
-              <p>“반복되는 통증, 오늘 정확히 원인을 확인해보세요.”</p>
-              <p>“PT 강요 없이 먼저 몸 상태와 공간부터 확인하세요.”</p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4 items-center">
-              <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-                <a href="#" onClick={handleOpenForm} className="bg-white text-black px-8 py-4 rounded-full font-bold text-lg transition-transform hover:scale-105 active:scale-95 inline-block text-center shadow-lg group flex-1 sm:flex-none">
-                  방문예약하기
-                </a>
-                <a href="#" onClick={handleOpenForm} className="btn-primary group flex-1 sm:flex-none">
-                  무료운동 처방신청하기
-                  <ArrowRight className="inline-block ml-2 group-hover:translate-x-1 transition-transform" size={20} />
-                </a>
-              </div>
-              <div className="flex items-center gap-2 text-white/60 text-sm font-medium sm:ml-2">
-                <CheckCircle2 size={16} className="text-brand-point shrink-0" /> 인바디 측정 및 1:1 상담 포함
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* 02. Problem Section */}
-      {/* 심리: 부정 편향 - 고통을 구체적으로 명명 */}
-      <section id="problem" className="section-padding bg-gray-50 uppercase tracking-tighter">
-        <div className="max-w-4xl mx-auto text-center mb-16 px-4">
-          <motion.h2 {...fadeIn} className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black mb-8 leading-tight break-keep tracking-tight">
-            헬스장에서 효과를 못 본건<br/>
-            <span className="text-brand-point whitespace-nowrap">당신 탓이 아닙니다.</span>
-          </motion.h2>
-          <motion.p {...fadeIn} className="text-lg text-gray-600 font-medium break-keep leading-relaxed">
-            헬스장 등록하고 기부하신 적 있으신가요?<br/>
-            뭘 해야 할지 몰라 런닝머신만 타셨나요?<br/>
-            그건 의지의 문제가 아닌 <span className="text-brand-point font-black">제대로 된 환경과 시스템</span>이 없었기 때문입니다.
-          </motion.p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {[
-            { tag: "Pain", title: "어깨와 허리의 묵직함", desc: "앉아만 있어도 몰려오는 통증, 파스나 마사지로는 한계가 있습니다." },
-            { tag: "Posture", title: "무너진 거울 속 실루엣", desc: "라운드 숄더와 거북목. 예쁜 옷을 입어도 왠지 모르게 태가 안 납니다." },
-            { tag: "Habit", title: "작심삼일 반복되는 운동", desc: "의욕만 앞선 등록. 결국 돈만 날리고 다시 제자리걸음인 일상." }
-          ].map((item, i) => (
-            <motion.div 
-              key={i} 
-              {...fadeIn} 
-              transition={{ delay: i * 0.1 }}
-              className="bg-white p-10 border-b-4 border-brand-point shadow-sm"
-            >
-              <div className="text-brand-point font-black text-sm mb-4">{item.tag}</div>
-              <h3 className="text-2xl font-black mb-4 break-keep">{item.title}</h3>
-              <p className="text-gray-500 leading-relaxed font-medium break-keep">{item.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* 03. Brand Culture Section */}
-      {/* 심리: 아하! 모먼트 - "아, 이게 답이구나" */}
-      <section className="section-padding">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
-          <div className="w-full md:w-1/2">
-            <img src="/culture_image.jpg" alt="활기찬 센터 분위기" className="w-full rounded-2xl shadow-2xl object-cover" />
+      <main>
+        <section className="relative flex min-h-screen items-center overflow-hidden bg-brand-outer pt-20 text-white">
+          <div className="absolute inset-0 z-0 opacity-35">
+            <video autoPlay loop muted playsInline className="h-full w-full object-cover">
+              <source src="/0501.mp4" type="video/mp4" />
+            </video>
           </div>
-          <div className="w-full md:w-1/2">
-            <h2 className="text-4xl md:text-5xl font-black mb-8 leading-tight">
-              운동은 정확하게,<br/>
-              효과는 확실하게,<br/>
-              분위기는 즐겁게,<br/>
-              <span className="text-brand-point">그게 프롬바디니까!</span>
+          <div className="absolute inset-0 z-0 bg-gradient-to-r from-black via-black/80 to-black/30" />
+
+          <div className="container relative z-10 mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, x: -28 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.75 }}
+              className="max-w-4xl"
+            >
+              <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-widest text-white ring-1 ring-white/20">
+                인천 송도 · 작전 · 부평
+              </div>
+              <h1 className="mb-7 break-keep text-4xl font-black leading-[1.14] tracking-tight sm:text-5xl md:text-7xl">
+                헬스장 등록만 하고 못 갔다면,
+                <br />
+                이번엔 <span className="text-brand-point">내 몸에 맞는 운동 루틴</span>부터 받아가세요.
+              </h1>
+              <p className="mb-8 max-w-2xl break-keep text-lg font-bold leading-relaxed text-white/85 md:text-2xl">
+                인바디 측정, AI 체형분석, 1:1 운동처방까지 무료로 받아보고 내 몸에 맞는 운동 방향을 먼저 확인하세요.
+              </p>
+
+              <div className="mb-8 grid max-w-3xl gap-3 text-sm font-bold text-white/85 sm:grid-cols-2 lg:grid-cols-4">
+                {["인천 10년 운영", "송도·작전·부평", "운동 초보 가능", "PT 강요 없는 상담"].map((badge) => (
+                  <div key={badge} className="flex items-center gap-2 rounded-xl bg-white/10 px-4 py-3 ring-1 ring-white/10">
+                    <CheckCircle2 size={18} className="shrink-0 text-brand-point" />
+                    {badge}
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <a href="#" onClick={openForm} className="btn-primary group px-9 py-5 text-xl">
+                  {CTA_TEXT}
+                  <ArrowRight className="ml-2 inline-block transition-transform group-hover:translate-x-1" size={22} />
+                </a>
+                <a
+                  href="#branches"
+                  className="inline-block rounded-full bg-white px-9 py-5 text-center text-lg font-black text-black shadow-lg transition-transform hover:scale-105 active:scale-95"
+                >
+                  가까운 지점 보기
+                </a>
+              </div>
+              <p className="mt-4 text-sm font-medium text-white/60">무료 진단 후 바로 등록하지 않아도 됩니다.</p>
+            </motion.div>
+          </div>
+        </section>
+
+        <section id="problem" className="section-padding bg-gray-50">
+          <div className="mx-auto mb-16 max-w-4xl px-4 text-center">
+            <motion.h2 {...fadeIn} className="mb-6 break-keep text-3xl font-black leading-tight md:text-6xl">
+              헬스장에서 효과를 못 본 건
+              <br />
+              <span className="text-brand-point">당신 의지가 약해서가 아닙니다.</span>
+            </motion.h2>
+            <motion.p {...fadeIn} className="break-keep text-lg font-medium leading-relaxed text-gray-600">
+              대부분은 운동을 못해서가 아니라 “무엇을 해야 하는지 몰라서” 멈춥니다.
+              <br />
+              그래서 프롬바디는 등록 전에 먼저 몸 상태와 운동 방향부터 확인합니다.
+            </motion.p>
+          </div>
+
+          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 md:grid-cols-3">
+            {problemCards.map((item, index) => (
+              <motion.div
+                key={item.id}
+                {...fadeIn}
+                transition={{ duration: 0.55, delay: index * 0.08 }}
+                className="rounded-3xl bg-white p-8 shadow-sm ring-1 ring-gray-100"
+              >
+                <div className="mb-4 text-sm font-black tracking-widest text-brand-point">{item.tag}</div>
+                <h3 className="mb-4 break-keep text-2xl font-black">{item.title}</h3>
+                <p className="break-keep font-medium leading-relaxed text-gray-500">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <a href="#" onClick={openForm} className="btn-primary">
+              {CTA_TEXT}
+            </a>
+          </div>
+        </section>
+
+        <section id="offer" className="section-padding bg-white">
+          <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[0.9fr_1.1fr]">
+            <motion.div {...fadeIn}>
+              <div className="mb-4 text-sm font-black uppercase tracking-widest text-brand-point">Free Body Diagnosis</div>
+              <h2 className="mb-6 break-keep text-4xl font-black leading-tight md:text-6xl">
+                방문하면 이 3가지를
+                <br />
+                <span className="text-brand-point">무료로 확인합니다.</span>
+              </h2>
+              <p className="mb-8 break-keep text-lg font-medium leading-relaxed text-gray-600">
+                PT 등록을 먼저 결정하는 구조가 아닙니다. 내 몸 상태와 현재 목표에 맞는 운동 방향을 먼저 확인하는 과정입니다.
+              </p>
+              <div className="rounded-3xl bg-black p-6 text-white">
+                <p className="break-keep text-xl font-black">
+                  무료 진단 후 바로 등록하지 않아도 됩니다.
+                  <br />
+                  내 몸 상태를 먼저 확인하는 것만으로도 충분합니다.
+                </p>
+              </div>
+            </motion.div>
+
+            <div className="grid gap-5">
+              {offerItems.map((item, index) => {
+                const Icon = item.icon;
+                return (
+                  <motion.div
+                    key={item.id}
+                    {...fadeIn}
+                    transition={{ duration: 0.55, delay: index * 0.08 }}
+                    className="flex gap-5 rounded-3xl border border-gray-100 bg-gray-50 p-6 shadow-sm"
+                  >
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-point/10 text-brand-point">
+                      <Icon size={28} />
+                    </div>
+                    <div>
+                      <h3 className="mb-2 text-2xl font-black">{item.title}</h3>
+                      <p className="break-keep font-medium leading-relaxed text-gray-500">{item.desc}</p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section id="process" className="section-padding bg-brand-outer text-white">
+          <div className="mx-auto max-w-7xl px-4 text-center">
+            <motion.div {...fadeIn} className="mb-16">
+              <h2 className="mb-5 break-keep text-3xl font-black md:text-5xl">
+                프롬바디는 <span className="text-brand-point">이렇게</span> 시작됩니다.
+              </h2>
+              <p className="break-keep text-lg font-medium text-gray-400">신청부터 방문까지 복잡하지 않게, 부담 없이 진행합니다.</p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 gap-y-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-6">
+              {processSteps.map((item) => (
+                <div key={item.id} className="relative z-10 flex flex-col items-center">
+                  <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-brand-point text-2xl font-black shadow-xl shadow-brand-point/20">
+                    {item.num}
+                  </div>
+                  <h3 className="mb-4 text-xl font-bold">{item.title}</h3>
+                  <p className="break-keep px-2 text-sm font-medium leading-relaxed text-gray-400">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-14 rounded-3xl border border-white/10 bg-white/5 p-6">
+              <p className="break-keep text-lg font-black">상담 당일 등록 강요 없이, 내 몸에 맞는 선택지를 안내드립니다.</p>
+            </div>
+
+            <div className="mt-10">
+              <a href="#" onClick={openForm} className="btn-primary">
+                {CTA_TEXT}
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section id="proof" className="section-padding bg-gray-50">
+          <div className="mx-auto max-w-7xl px-4 text-center">
+            <motion.div {...fadeIn} className="mb-14">
+              <h2 className="mb-6 break-keep text-3xl font-black md:text-5xl">
+                처음 온 분들도 대부분
+                <br />
+                <span className="text-brand-point">비슷한 마음</span>이었습니다.
+              </h2>
+              <div className="mx-auto mb-8 max-w-2xl space-y-2 break-keep text-lg font-bold text-gray-500">
+                <p>“운동을 한 번도 안 해봤어요.”</p>
+                <p>“헬스장이 무서워요.”</p>
+                <p>“PT는 부담스러워요.”</p>
+                <p>“혼자 하니까 매번 작심삼일이에요.”</p>
+              </div>
+              <p className="break-keep text-lg font-black">
+                이미 잘하는 사람을 위한 공간이 아니라, 다시 시작하고 싶은 사람을 위한 공간입니다.
+              </p>
+            </motion.div>
+
+            <div className="mb-16 grid grid-cols-1 gap-6 md:grid-cols-3">
+              {stats.map((stat) => (
+                <div key={stat.id} className="rounded-3xl bg-black p-8 text-white">
+                  <div className="mb-3 text-6xl font-black text-brand-point">{stat.value}</div>
+                  <div className="font-bold text-gray-300">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mb-16 flex flex-col gap-4 lg:gap-6">
+              <div className="relative group">
+                <button
+                  type="button"
+                  aria-label="후기 왼쪽으로 보기"
+                  onClick={() => scrollSlider(reviewRow1Ref, "left")}
+                  className="absolute -left-12 top-1/2 z-10 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-gray-600 opacity-0 shadow-lg transition-colors hover:text-brand-point group-hover:opacity-100 lg:flex"
+                >
+                  <ChevronLeft size={24} />
+                </button>
+                <button
+                  type="button"
+                  aria-label="후기 오른쪽으로 보기"
+                  onClick={() => scrollSlider(reviewRow1Ref, "right")}
+                  className="absolute -right-12 top-1/2 z-10 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-gray-600 opacity-0 shadow-lg transition-colors hover:text-brand-point group-hover:opacity-100 lg:flex"
+                >
+                  <ChevronRight size={24} />
+                </button>
+                <div ref={reviewRow1Ref} className="grid snap-x snap-mandatory grid-flow-col auto-cols-[75%] gap-4 overflow-x-auto scroll-smooth sm:auto-cols-[45%] md:auto-cols-[30%] lg:auto-cols-[22%] lg:gap-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+                  {["review1.png", "review2.png", "review3.png", "review4.png", "review5.png"].map((img) => (
+                    <div key={img} className="snap-center overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm transition-shadow hover:shadow-lg">
+                      <img src={`/reviews/${img}`} alt={`프롬바디 회원 후기 ${img.replace(/\D/g, "")}`} className="h-auto w-full pointer-events-none" loading="lazy" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="relative group">
+                <button
+                  type="button"
+                  aria-label="후기 왼쪽으로 보기"
+                  onClick={() => scrollSlider(reviewRow2Ref, "left")}
+                  className="absolute -left-12 top-1/2 z-10 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-gray-600 opacity-0 shadow-lg transition-colors hover:text-brand-point group-hover:opacity-100 lg:flex"
+                >
+                  <ChevronLeft size={24} />
+                </button>
+                <button
+                  type="button"
+                  aria-label="후기 오른쪽으로 보기"
+                  onClick={() => scrollSlider(reviewRow2Ref, "right")}
+                  className="absolute -right-12 top-1/2 z-10 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-gray-600 opacity-0 shadow-lg transition-colors hover:text-brand-point group-hover:opacity-100 lg:flex"
+                >
+                  <ChevronRight size={24} />
+                </button>
+                <div ref={reviewRow2Ref} className="grid snap-x snap-mandatory grid-flow-col auto-cols-[75%] gap-4 overflow-x-auto scroll-smooth pb-4 sm:auto-cols-[45%] md:auto-cols-[30%] lg:auto-cols-[22%] lg:gap-6 lg:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+                  {["review6.png", "review7.png", "review8.png", "review9.png", "review10.png"].map((img) => (
+                    <div key={img} className="snap-center overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm transition-shadow hover:shadow-lg">
+                      <img src={`/reviews/${img}`} alt={`프롬바디 회원 후기 ${img.replace(/\D/g, "")}`} className="h-auto w-full pointer-events-none" loading="lazy" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <h3 className="mb-8 break-keep text-2xl font-black md:text-4xl">
+              프롬바디가 <span className="text-brand-point">증명한 변화들</span>
+            </h3>
+            <div className="grid snap-x snap-mandatory grid-flow-col auto-cols-[85%] gap-4 overflow-x-auto sm:auto-cols-[45%] lg:grid-flow-row lg:grid-cols-4 lg:auto-cols-auto lg:gap-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+              {[6, 7, 8, 9, 10, 11, 12, 13].map((num) => (
+                <div key={num} className="snap-center overflow-hidden rounded-xl bg-white shadow-xl transition-transform lg:hover:-translate-y-2">
+                  <img src={`/transformations/transform${num}.jpg`} alt={`프롬바디 변화 증명 ${num}`} className="h-auto w-full object-cover pointer-events-none" loading="lazy" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="programs" className="section-padding bg-white">
+          <div className="mx-auto max-w-7xl px-4">
+            <div className="mb-16 text-center">
+              <h2 className="mb-6 break-keep text-4xl font-black md:text-5xl">
+                운동진단 후
+                <br />
+                <span className="text-brand-point">나에게 맞는 방식</span>으로 시작하세요.
+              </h2>
+              <p className="break-keep text-lg font-medium text-gray-500">어떤 프로그램이 맞는지는 방문 상담에서 함께 확인합니다.</p>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-3">
+              {programs.map((program) => {
+                const Icon = program.icon;
+                return (
+                  <motion.div key={program.id} {...fadeIn} className="flex flex-col rounded-3xl border border-gray-100 bg-gray-50 p-8 shadow-sm">
+                    <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-point/10 text-brand-point">
+                      <Icon size={32} />
+                    </div>
+                    <h3 className="mb-4 break-keep text-2xl font-black">{program.title}</h3>
+                    <p className="mb-6 break-keep font-medium leading-relaxed text-gray-500">{program.desc}</p>
+                    <ul className="mt-auto space-y-3">
+                      {program.points.map((point) => (
+                        <li key={point} className="flex gap-2 break-keep text-sm font-bold text-gray-700">
+                          <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-brand-point" />
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            <div className="mt-12 text-center">
+              <a href="#" onClick={openForm} className="btn-primary">
+                내게 맞는 운동 방식 확인하기
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section id="branches" className="section-padding bg-gray-50">
+          <div className="mx-auto max-w-7xl px-6">
+            <motion.div {...fadeIn} className="mb-16 text-center">
+              <h2 className="mb-4 break-keep text-4xl font-black">
+                가까운 <span className="text-brand-point">프롬바디 지점</span>을 선택하세요.
+              </h2>
+              <p className="break-keep font-medium text-gray-500">전 지점 동일한 퀄리티의 무료 운동진단을 약속합니다.</p>
+            </motion.div>
+
+            <div className="grid gap-8 md:grid-cols-3">
+              {branches.map((branch) => (
+                <motion.div key={branch.id} {...fadeIn} className="flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-lg">
+                  <a href={branch.mapUrl} target="_blank" rel="noreferrer" className="group relative block h-64 w-full cursor-pointer overflow-hidden bg-gray-200">
+                    <img src="/map_placeholder.png" alt={`${branch.name} 지도`} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                      <div className="flex items-center gap-2 rounded-full bg-[#03c75a] px-5 py-2 font-bold text-white shadow-xl">
+                        <MapPin size={18} /> 네이버지도 길찾기
+                      </div>
+                    </div>
+                  </a>
+                  <div className="flex flex-1 flex-col p-6">
+                    <div className="mb-2 flex items-center gap-2">
+                      <MapPin className="text-brand-point" size={20} />
+                      <h3 className="text-xl font-bold">{branch.title}</h3>
+                    </div>
+                    <p className="mb-4 break-keep text-sm text-gray-500">
+                      {branch.address.map((line) => (
+                        <React.Fragment key={line}>
+                          {line}
+                          <br />
+                        </React.Fragment>
+                      ))}
+                    </p>
+                    <p className="mb-5 text-sm font-bold text-gray-700">{branch.phone}</p>
+                    <div className="mt-auto">
+                      <a href="#" onClick={openForm} className="btn-primary flex w-full items-center justify-center gap-2 py-3 text-sm">
+                        {branch.name} 무료 운동진단 예약
+                        <ArrowRight size={16} />
+                      </a>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="faq" className="section-padding bg-white">
+          <div className="mx-auto max-w-3xl px-4">
+            <h2 className="mb-12 text-center text-4xl font-black">자주 묻는 질문</h2>
+            <div className="space-y-6">
+              {faqs.map((faq) => (
+                <details key={faq.id} className="group cursor-pointer border-b border-gray-100 pb-4">
+                  <summary className="flex list-none items-center justify-between gap-4 py-2 text-lg font-bold">
+                    <span className="break-keep">{faq.q}</span>
+                    <ChevronRight size={18} className="shrink-0 transition-transform group-open:rotate-90" />
+                  </summary>
+                  <p className="mt-4 break-keep font-medium leading-relaxed text-gray-500">{faq.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-black px-6 py-24 text-center text-white">
+          <div className="mx-auto max-w-4xl">
+            <div className="mb-4 text-xl font-black italic tracking-tight text-brand-point">이번에도 혼자 시작하려다 멈출 것 같다면</div>
+            <h2 className="mb-8 break-keep text-4xl font-black leading-tight md:text-6xl">
+              먼저 내 몸에 맞는 운동 방향부터 확인하세요.
             </h2>
-            <p className="text-lg text-gray-600 mb-8 leading-relaxed font-medium break-keep">
-              운동하러 가는 길이 스트레스가 되면 안 됩니다.<br className="hidden md:block"/>
-              프롬바디는 활기찬 에너지가 흐르는 공간에서<br className="hidden md:block"/>
-              트레이너는 조력자가 되고 옆 사람들은 동료가 되어 함께<br className="hidden md:block"/>
-              목표를 달성하는 문화를 지향합니다.
+            <p className="mb-10 break-keep text-lg font-bold text-gray-300">
+              인바디 측정 + AI 체형분석 + 1:1 운동처방
+              <br />
+              프롬바디 무료 운동진단은 송도 · 작전 · 부평 지점에서 가능합니다.
             </p>
-            <ul className="space-y-4 mb-10">
-              {[
-                "어느 지점을 가도 동일한 직영 퀄리티",
-                "수업이 끝나도 이어지는 철저한 개인 관리",
-                "부담 없는 상담과 전문적인 트레이닝",
-                "위압감 없고 PT강요 없는곳",
-                "청결 친절 진정성이 가장 우선"
-              ].map((text, i) => (
-                <li key={i} className="flex items-center gap-3 font-bold text-gray-800">
-                  <CheckCircle2 className="text-brand-point" size={20} />
-                  {text}
+            <a href="#" onClick={openForm} className="btn-primary px-12 py-6 text-xl">
+              {CTA_TEXT}
+            </a>
+            <p className="mt-4 text-sm font-medium text-gray-500">신청 후 담당자가 방문 가능 시간을 안내드립니다.</p>
+          </div>
+        </section>
+      </main>
+
+      <footer className="border-t bg-gray-50 py-12">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 text-sm font-bold md:grid-cols-3">
+          <div>
+            <div className="mb-4 font-black text-brand-point">LOCATIONS</div>
+            <ul className="space-y-4">
+              {branches.map((branch) => (
+                <li key={branch.id}>
+                  <span className="text-brand-point">{branch.name}</span> {branch.phone}
                 </li>
               ))}
             </ul>
-            <a href="#" onClick={handleOpenForm} className="btn-primary">프롬바디 문화 체험하기</a>
           </div>
-        </div>
-      </section>
-
-      {/* 04. System Section */}
-      {/* 심리: 노력 인식 효과 - 데이터 관리 강조 */}
-      <section id="system" className="section-padding bg-black text-white overflow-hidden relative">
-        <div className="absolute top-0 right-0 w-1/2 h-full opacity-20 pointer-events-none">
-          <div className="font-black text-[15rem] leading-none select-none text-white/5">SYSTEM</div>
-        </div>
-        <div className="max-w-7xl mx-auto relative z-10 text-center md:text-left">
-          <div className="flex flex-col md:flex-row items-center gap-16">
-            <div className="w-full md:w-1/2">
-              <span className="text-brand-point font-black tracking-widest mb-4 block uppercase">Exclusive Management</span>
-              <h2 className="text-4xl md:text-5xl font-black mb-8">
-                기대만 하는 것이 아니라<br/>
-                <span className="text-brand-point">데이터로 확인</span>하는 변화
-              </h2>
-              <div className="space-y-8">
-                <div className="flex gap-4 items-start text-left">
-                  <div className="bg-brand-point/10 p-3 rounded-lg"><Activity className="text-brand-point" size={24} /></div>
-                  <div>
-                    <h3 className="text-xl font-bold mb-2 text-balance">AI 체형분석부터 식단까지 철저한 관리 시스템</h3>
-                    <p className="text-gray-400 font-medium break-keep">
-                      전용 앱을 이용하여 개인최적화 관리 시스템으로 체형분석부터<br className="hidden md:block"/>
-                      운동 전 컨디션 체크, 운동일지, 식단기록까지 실패없는 운동을 전달합니다.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-4 items-start text-left">
-                  <div className="bg-brand-point/10 p-3 rounded-lg"><User className="text-brand-point" size={24} /></div>
-                  <div>
-                    <h3 className="text-xl font-bold mb-2">1:1 전담 마킹 시스템</h3>
-                    <p className="text-gray-400 font-medium break-keep">
-                      단순히 50분 수업으로 끝내지 않습니다.<br className="hidden md:block"/>
-                      수업 외 시간에 대한 피드백까지 전담 트레이너가 함께합니다.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="w-full md:w-1/2">
-              <div className="rounded-xl overflow-hidden shadow-2xl border border-white/10 w-full h-auto">
-                <img 
-                  src="/system-dashboard.jpg" 
-                  alt="프롬바디 관리 시스템" 
-                  className="w-full h-auto object-cover"
-                />
-              </div>
-            </div>
+          <div>
+            <div className="mb-4 font-black text-brand-point">HOURS</div>
+            <p>평일 09:00 ~ 23:00</p>
+            <p>토요일 10:00 ~ 18:00</p>
+            <p className="mt-2 text-xs text-gray-400">일요일 공휴일 별도공지</p>
           </div>
-        </div>
-      </section>
-
-      {/* 04-5. Comparison Section */}
-      <section className="section-padding bg-gray-50">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-black">
-              <span className="text-brand-point">프롬바디</span>는 이렇게 달라요
-            </h2>
-          </div>
-          <div className="bg-[#1f1f1f] rounded-2xl overflow-hidden shadow-2xl">
-            {/* Header */}
-            <div className="grid grid-cols-3 border-b border-white/10 text-sm sm:text-lg md:text-xl font-black text-center items-center tracking-tight">
-              <div className="px-1 py-4 md:p-6 text-transparent select-none">구분</div>
-              <div className="px-1 py-4 md:p-6 bg-brand-point/10 text-brand-point border-x border-white/10 break-keep">프롬바디 피트니스</div>
-              <div className="px-1 py-4 md:p-6 text-gray-400 whitespace-nowrap">일반 헬스장</div>
-            </div>
-            
-            {/* Rows */}
-            {[
-              { label: "기구 사용법", pro: "QR 스캔으로 즉시 확인", con: "물어보기 눈치" },
-              { label: "운동 루틴", pro: "회원권만으로 루틴 완성", con: "PT 강요" },
-              { label: "목적별 프로그램", pro: "맞춤형 전문 프로그램", con: "획일화된 프로그램" },
-              { label: "AI 체형 분석", pro: "매월 정밀 측정", con: "없음" },
-              { label: "회원 관리 시스템", pro: "밀착 케어", con: "방치" },
-              { label: "평균 목표 달성", pro: "3개월", con: "작심삼일" },
-            ].map((row, i) => (
-              <div key={i} className="grid grid-cols-3 border-b border-white/10 last:border-0 text-xs sm:text-sm md:text-base transition-colors hover:bg-white/5">
-                <div className="p-4 md:p-6 text-white font-bold flex items-center justify-center md:justify-start break-keep text-center md:text-left">{row.label}</div>
-                <div className="p-4 md:p-6 bg-brand-point/5 text-brand-point font-bold flex flex-col md:flex-row items-center justify-center border-x border-white/10 gap-1 md:gap-2 text-center break-keep">
-                  <CheckCircle2 size={18} className="shrink-0" /> {row.pro}
-                </div>
-                <div className="p-4 md:p-6 text-gray-500 font-medium flex items-center justify-center text-center break-keep">{row.con}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 05. Service Section */}
-      {/* 심리: 미끼 효과 & 중앙 무대 효과 */}
-      <section id="programs" className="section-padding bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-black mb-6"><span className="text-brand-point">최상의 결과</span>를 위한<br/>프롬바디 프로그램</h2>
-            <p className="text-gray-500 font-medium italic">당신의 목적에 맞는 최적의 플랜을 제안합니다.</p>
-          </div>
-          <div className="grid grid-rows-1 grid-flow-col auto-cols-[95%] sm:auto-cols-[60%] md:grid-rows-none md:grid-flow-row md:grid-cols-3 md:auto-cols-auto gap-4 md:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory pt-8 pb-12 px-4 -mx-4 md:pt-8 md:pb-12 md:px-0 md:mx-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
-            {/* Health */}
-            <motion.div {...fadeIn} className="snap-center flex-shrink-0 bg-white px-4 py-8 md:p-10 ring-4 ring-brand-point relative flex flex-col items-center text-center md:-translate-y-4 shadow-2xl mt-4 md:mt-0">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-point text-white text-xs font-black px-4 py-1 uppercase tracking-widest">Best Choice</div>
-              <div className="flex items-center justify-center p-4 rounded-full bg-brand-point/10 mb-6">
-                <MapPin size={32} className="text-brand-point" />
-              </div>
-              <h3 className="text-2xl font-black mb-4 break-keep">헬스 (회원권)</h3>
-              <p className="text-gray-500 mb-6 md:mb-8 font-medium break-keep">쾌적한 시설과 최신 기구를<br/>자유롭게 이용하는 실속 플랜</p>
-              <ul className="text-left w-full space-y-3 mb-6 md:mb-8">
-                {["최상급 프리미엄 기구 완비", "여유로운 스트레칭 존", "등록 시 기본 O.T 제공"].map((t, i) => (
-                  <li key={i} className="flex gap-2 text-[13px] md:text-sm font-bold text-gray-700">
-                    <CheckCircle2 size={16} className="text-brand-point shrink-0" /> {t}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-auto pt-6 border-t w-full text-sm text-gray-400 font-bold">센터 전체 기초 시설 이용 가능</div>
-            </motion.div>
-
-            {/* PT (Main) */}
-            <motion.div 
-              {...fadeIn} 
-              className="snap-center flex-shrink-0 bg-white px-4 py-8 md:p-10 ring-4 ring-brand-point relative flex flex-col items-center text-center md:-translate-y-4 shadow-2xl mt-4 md:mt-0"
-            >
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-point text-white text-xs font-black px-4 py-1 uppercase tracking-widest">Best Choice</div>
-              <div className="flex items-center justify-center p-4 rounded-full bg-brand-point/10 mb-6">
-                <Activity size={32} className="text-brand-point" />
-              </div>
-              <h3 className="text-2xl font-black mb-4 break-keep">1:1 맞춤형 PT&필라테스</h3>
-              <p className="text-gray-500 mb-6 md:mb-8 font-medium break-keep">재활부터 통증 케어, 고강도<br/>근력 증강까지<br/>오직 당신만을 위한 설계</p>
-              <ul className="text-left w-full space-y-3 mb-6 md:mb-8">
-                {["체형 분석 기반 루틴 설계", "개인 대시보드 리포팅", "식단 및 생활 습관 서포트"].map((t, i) => (
-                  <li key={i} className="flex gap-2 text-[13px] md:text-sm font-bold text-gray-700">
-                    <CheckCircle2 size={16} className="text-brand-point shrink-0" /> {t}
-                  </li>
-                ))}
-              </ul>
-              <a href="#" onClick={handleOpenForm} className="btn-primary w-full shadow-brand-point/30">상담 후 시작하기</a>
-            </motion.div>
-
-            {/* Pilates */}
-            <motion.div {...fadeIn} className="snap-center flex-shrink-0 bg-white px-4 py-8 md:p-10 ring-4 ring-brand-point relative flex flex-col items-center text-center md:-translate-y-4 shadow-2xl mt-4 md:mt-0">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-point text-white text-xs font-black px-4 py-1 uppercase tracking-widest">Best Choice</div>
-              <div className="flex items-center justify-center p-4 rounded-full bg-brand-point/10 mb-6">
-                <User size={32} className="text-brand-point" />
-              </div>
-              <h3 className="text-2xl font-black mb-4 flex items-center justify-center gap-2">
-                바레 (barre)
-                <span className="text-brand-point text-base font-bold">작전점</span>
-              </h3>
-              <p className="text-gray-500 mb-6 md:mb-8 font-medium break-keep text-[15px] sm:text-base tracking-tight">우아한 움직임 속 강력한 코어 밸런스를 통해<br/>선명한 바디라인을 잡아보세요</p>
-              <ul className="text-left w-full space-y-3 mb-6 md:mb-8">
-                {[
-                  "발레 동작 기반 - 몸선을 따라 흐르는 동작", 
-                  "고강도 근육 자극 - 코어 중심 실루엣 정리", 
-                  "저충격 설계 - 관절에 무리 없이 꾸준히"
-                ].map((t, i) => (
-                  <li key={i} className="flex gap-2 text-[13px] md:text-sm font-bold text-gray-700 break-keep">
-                    <CheckCircle2 size={16} className="text-brand-point shrink-0 mt-0.5" /> {t}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-auto pt-6 border-t w-full text-sm text-gray-400 font-bold break-keep">하루 50분 나를위한 가장 우아한<br/>자기관리</div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* 06. Results/Proof Section */}
-      {/* 심리: 사회적 증거 & 후광 효과 */}
-      <section className="section-padding overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-5xl font-black mb-16 break-keep">프롬바디가 <span className="text-brand-point">증명한 변화들</span></h2>
-          <div className="flex flex-col gap-4 lg:gap-6">
-            <div className="grid grid-flow-col auto-cols-[85%] sm:auto-cols-[45%] lg:grid-rows-none lg:grid-flow-row lg:grid-cols-4 lg:auto-cols-auto gap-4 lg:gap-6 overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
-              {[6, 7, 8, 9].map(i => (
-                <div key={i} className="snap-center flex-shrink-0 rounded-xl overflow-hidden shadow-xl bg-white transform transition-transform lg:hover:-translate-y-2">
-                  <img src={`/transformations/transform${i}.jpg`} alt={`프롬바디 변화 증명 ${i}`} className="w-full h-auto object-cover pointer-events-none" />
-                </div>
-              ))}
-            </div>
-            <div className="grid grid-flow-col auto-cols-[85%] sm:auto-cols-[45%] lg:grid-rows-none lg:grid-flow-row lg:grid-cols-4 lg:auto-cols-auto gap-4 lg:gap-6 overflow-x-auto snap-x snap-mandatory pb-4 lg:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
-              {[10, 11, 12, 13].map(i => (
-                <div key={i} className="snap-center flex-shrink-0 rounded-xl overflow-hidden shadow-xl bg-white transform transition-transform lg:hover:-translate-y-2">
-                  <img src={`/transformations/transform${i}.jpg`} alt={`프롬바디 변화 증명 ${i}`} className="w-full h-auto object-cover pointer-events-none" />
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="mt-16 flex flex-wrap gap-8 justify-center items-center grayscale opacity-60">
-            <div className="font-black text-4xl">500+</div>
-            <div className="font-black text-4xl italic">FROMBODY</div>
-            <div className="font-black text-4xl tracking-tighter">FITNESS</div>
-            <div className="font-black text-4xl uppercase">Certified</div>
-          </div>
-        </div>
-      </section>
-
-      {/* 06-2. Proof Statistics Section */}
-      <section className="section-padding bg-black text-white">
-        <div className="max-w-5xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-5xl font-black mb-8 break-keep"><span className="text-brand-point">처음엔</span> 다들 비슷한 마음으로 오셨습니다.</h2>
-          <div className="w-12 h-1 bg-brand-point mx-auto mb-10"></div>
-          
-          <div className="text-gray-400 font-medium space-y-2 mb-10 text-lg">
-            <p>"운동 경험이 없어서요",</p>
-            <p>"헬스장이 너무 무서워서요",</p>
-            <p>"PT는 부담스러워서요"</p>
-          </div>
-          
-          <p className="text-gray-300 font-medium mb-20 text-lg break-keep">
-            하지만 프롬바디를 경험하고 진솔하게 남긴 후기를 읽어주세요.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
-            <div>
-              <div className="text-6xl md:text-7xl font-black text-brand-point mb-4">85%</div>
-              <div className="text-gray-400 font-bold">시설 이용권 재등록률</div>
-            </div>
-            <div>
-              <div className="text-6xl md:text-7xl font-black text-brand-point mb-4">90%</div>
-              <div className="text-gray-400 font-bold">회원 평균 만족도</div>
-            </div>
-            <div>
-              <div className="text-6xl md:text-7xl font-black text-brand-point mb-4">95%</div>
-              <div className="text-gray-400 font-bold">PT 완주율</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 06-3. Real Member Reviews Section */}
-      <section className="section-padding bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-5xl font-black mb-16 break-keep">프롬바디 실제 <span className="text-brand-point">회원님들의 후기</span></h2>
-          <div className="flex flex-col gap-4 lg:gap-6">
-            <div className="relative group">
-              <button onClick={() => scrollSlider(reviewRow1Ref, 'left')} className="hidden lg:flex absolute -left-12 top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full items-center justify-center text-gray-600 hover:text-brand-point z-10 transition-colors opacity-0 group-hover:opacity-100">
-                <ChevronLeft size={24} />
-              </button>
-              <button onClick={() => scrollSlider(reviewRow1Ref, 'right')} className="hidden lg:flex absolute -right-12 top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full items-center justify-center text-gray-600 hover:text-brand-point z-10 transition-colors opacity-0 group-hover:opacity-100">
-                <ChevronRight size={24} />
-              </button>
-              <div ref={reviewRow1Ref} className="grid grid-flow-col auto-cols-[75%] sm:auto-cols-[45%] md:auto-cols-[30%] lg:auto-cols-[22%] gap-4 lg:gap-6 overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] scroll-smooth">
-                {[
-                  'review1.png', 'review2.png', 'review3.png', 'review4.png', 'review5.png'
-                ].map((img, i) => (
-                  <div key={i} className="snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow bg-white border border-gray-100">
-                    <img src={`/reviews/${img}`} alt={`프롬바디 회원 후기 ${i+1}`} className="w-full h-auto pointer-events-none" />
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="relative group">
-              <button onClick={() => scrollSlider(reviewRow2Ref, 'left')} className="hidden lg:flex absolute -left-12 top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full items-center justify-center text-gray-600 hover:text-brand-point z-10 transition-colors opacity-0 group-hover:opacity-100">
-                <ChevronLeft size={24} />
-              </button>
-              <button onClick={() => scrollSlider(reviewRow2Ref, 'right')} className="hidden lg:flex absolute -right-12 top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full items-center justify-center text-gray-600 hover:text-brand-point z-10 transition-colors opacity-0 group-hover:opacity-100">
-                <ChevronRight size={24} />
-              </button>
-              <div ref={reviewRow2Ref} className="grid grid-flow-col auto-cols-[75%] sm:auto-cols-[45%] md:auto-cols-[30%] lg:auto-cols-[22%] gap-4 lg:gap-6 overflow-x-auto snap-x snap-mandatory pb-4 lg:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] scroll-smooth">
-                {[
-                  'review6.png', 'review7.png', 'review8.png', 'review9.png', 'review10.png'
-                ].map((img, i) => (
-                  <div key={i+5} className="snap-center rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow bg-white border border-gray-100">
-                    <img src={`/reviews/${img}`} alt={`프롬바디 회원 후기 ${i+6}`} className="w-full h-auto pointer-events-none" />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 07. Process Section */}
-      {/* 심리: 목표 그라데이션 효과 - 6단계로 확장하여 신뢰도 강화 */}
-      <section className="section-padding bg-brand-outer text-white">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-black mb-16 break-keep">프롬바디는 <span className="text-brand-point">이렇게</span> 시작됩니다</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-16 gap-x-6 relative">
-            {[
-              { num: "01", title: "설문지 작성", desc: "1분이면 됩니다. 이름·연락처·목표만 입력하면 OK" },
-              { num: "02", title: "담당자 연락", desc: "작성 후 24시간 내 트레이너가 직접 연락드립니다" },
-              { num: "03", title: "무료 방문 상담", desc: <>부담 없이 공간을 먼저 경험해보세요<br/>(구매 강요 없음)</> },
-              { num: "04", title: "나만의 루틴으로 시작", desc: <>시설만 이용할지, PT와 함께할지<br/>그때 결정하면 됩니다</> }
-            ].map((item, i) => (
-              <div key={i} className="relative z-10 flex flex-col items-center group">
-                <div className="w-20 h-20 bg-brand-point rounded-full flex items-center justify-center font-black text-2xl mb-6 shadow-xl shadow-brand-point/20 group-hover:scale-110 transition-transform duration-300">
-                  {item.num}
-                </div>
-                <h3 className="text-xl font-bold mb-4">{item.title}</h3>
-                <p className="text-gray-400 text-sm font-medium px-2 leading-relaxed break-keep">
-                  {item.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-20">
-            <a href="#" onClick={handleOpenForm} className="btn-primary">간편 상담 예약하기</a>
-          </div>
-        </div>
-      </section>
-
-      {/* 06. Branches Section */}
-      <section id="branches" className="section-padding bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div {...fadeIn} className="text-center mb-16">
-            <h2 className="text-4xl font-black mb-4">가까운 <span className="text-brand-point">프롬바디</span> 지점 찾기</h2>
-            <p className="text-gray-500 font-medium">전 지점 동일한 퀄리티의 프리미엄 관리를 약속합니다.</p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Songdo */}
-            <motion.div {...fadeIn} className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 flex flex-col">
-              <a 
-                href="https://map.naver.com/p/search/프롬바디피트니스 송도점" 
-                target="_blank" 
-                rel="noreferrer" 
-                className="h-64 w-full bg-gray-200 relative block group overflow-hidden cursor-pointer"
-              >
-                <img src="/map_placeholder.png" alt="송도점 지도" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="bg-[#03c75a] text-white font-bold py-2 px-5 rounded-full shadow-xl flex items-center gap-2">
-                    <MapPin size={18} /> 네이버지도 길찾기
-                  </div>
-                </div>
+          <div>
+            <div className="mb-4 font-black text-brand-point">CONTACT</div>
+            <div className="mb-4 flex gap-4">
+              <a href="#" aria-label="인스타그램" className="rounded-full border bg-white p-2 shadow-sm hover:text-brand-point">
+                <Instagram size={20} />
               </a>
-              <div className="p-6 flex-1 flex flex-col">
-                <div className="flex items-center gap-2 mb-2">
-                  <MapPin className="text-brand-point" size={20} />
-                  <h3 className="text-xl font-bold">송도점 (인천대입구역)</h3>
-                </div>
-                <p className="text-gray-500 text-sm mb-4 break-keep">
-                  인천광역시 연수구 하모니로138번길 11<br/>
-                  (송도캐슬센트럴파크) 102동 324호
-                </p>
-                <div className="mt-auto">
-                  <a href="#" onClick={handleOpenForm} className="w-full btn-primary py-3 text-sm flex justify-center items-center gap-2">
-                    송도점 방문 상담 예약
-                    <ArrowRight size={16} />
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Jakjeon */}
-            <motion.div {...fadeIn} className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 flex flex-col">
-              <a 
-                href="https://map.naver.com/p/search/프롬바디피트니스 작전점" 
-                target="_blank" 
-                rel="noreferrer" 
-                className="h-64 w-full bg-gray-200 relative block group overflow-hidden cursor-pointer"
-              >
-                <img src="/map_placeholder.png" alt="작전점 지도" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="bg-[#03c75a] text-white font-bold py-2 px-5 rounded-full shadow-xl flex items-center gap-2">
-                    <MapPin size={18} /> 네이버지도 길찾기
-                  </div>
-                </div>
+              <a href="#" aria-label="메시지 문의" className="rounded-full border bg-white p-2 shadow-sm hover:text-brand-point">
+                <MessageCircle size={20} />
               </a>
-              <div className="p-6 flex-1 flex flex-col">
-                <div className="flex items-center gap-2 mb-2">
-                  <MapPin className="text-brand-point" size={20} />
-                  <h3 className="text-xl font-bold">작전점</h3>
-                </div>
-                <p className="text-gray-500 text-sm mb-4 break-keep">
-                  인천광역시 계양구 장제로 708<br/>
-                  한샘프라자 2층
-                </p>
-                <div className="mt-auto">
-                  <a href="#" onClick={handleOpenForm} className="w-full btn-primary py-3 text-sm flex justify-center items-center gap-2">
-                    작전점 방문 상담 예약
-                    <ArrowRight size={16} />
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Bupyeong */}
-            <motion.div {...fadeIn} className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 flex flex-col">
-              <a 
-                href="https://map.naver.com/p/search/프롬바디피트니스 부평점" 
-                target="_blank" 
-                rel="noreferrer" 
-                className="h-64 w-full bg-gray-200 relative block group overflow-hidden cursor-pointer"
-              >
-                <img src="/map_placeholder.png" alt="부평점 지도" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="bg-[#03c75a] text-white font-bold py-2 px-5 rounded-full shadow-xl flex items-center gap-2">
-                    <MapPin size={18} /> 네이버지도 길찾기
-                  </div>
-                </div>
+              <a href="#" aria-label="전화 문의" className="rounded-full border bg-white p-2 shadow-sm hover:text-brand-point">
+                <Phone size={20} />
               </a>
-              <div className="p-6 flex-1 flex flex-col">
-                <div className="flex items-center gap-2 mb-2">
-                  <MapPin className="text-brand-point" size={20} />
-                  <h3 className="text-xl font-bold">부평점</h3>
-                </div>
-                <p className="text-gray-500 text-sm mb-4 break-keep">
-                  인천광역시 부평구 경원대로 1404<br/>
-                  그랑프리빌딩 4층 405호
-                </p>
-                <div className="mt-auto">
-                  <a href="#" onClick={handleOpenForm} className="w-full btn-primary py-3 text-sm flex justify-center items-center gap-2">
-                    부평점 방문 상담 예약
-                    <ArrowRight size={16} />
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* 08. FAQ Section */}
-      {/* 심리: 반발감 효과 회피 & 손실 회피 */}
-      <section id="faq" className="section-padding bg-white">
-        <div className="max-w-3xl mx-auto px-4">
-          <h2 className="text-4xl font-black mb-12 text-center">자주 묻는 질문</h2>
-          <div className="space-y-6">
-            {[
-              { q: "운동을 한 번도 안 해봤는데 괜찮을까요?", a: "네, 대다수의 회원님이 프롬바디에서 운동을 처음 시작하십니다. 초점은 '잘 하는 것'이 아니라 '바르게 하는 것'부터 시작하므로 걱정하지 않으셔도 됩니다." },
-              { q: "PT 가격/회원권 가격은 어떻게 되나요?", a: "회권수와 기간에 따라 상이하며, 자세한 내용은 상담 시 투명하게 안내해 드립니다. 합리적인 가격으로 최상의 관리를 받으실 수 있도록 조율해 드립니다." },
-              { q: "주차는 가능한가요?", a: "네, 각 지점(작전/송도/부평 등) 모두 건물 내 지하 또는 지상 주차가 가능하여 편하게 방문하실 수 있습니다." },
-              { q: "체험은 어떻게 진행되나요? 당일 가입해야 하나요?", a: "당일 가입 강요는 절대 없습니다. 체험은 약 50분 내외로 진행되며, 직접 받아보시고 결정하시는 것을 권장합니다." },
-              { q: "다른 지점과 교차 이용 가능한가요?", a: "네, 프롬바디는 인천 지역 주요 거점에 직영 체제로 운영되므로, 지점 간 협의를 통해 편리한 연계 관리가 가능합니다." }
-            ].map((faq, i) => (
-              <details key={i} className="group border-b border-gray-100 pb-4 cursor-pointer">
-                <summary className="flex items-center justify-between font-bold text-lg list-none py-2 uppercase tracking-tighter">
-                  {faq.q}
-                  <ChevronRight size={18} className="group-open:rotate-90 transition-transform" />
-                </summary>
-                <p className="mt-4 text-gray-500 leading-relaxed font-medium">
-                  {faq.a}
-                </p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 09. Footer / Final CTA */}
-      {/* 심리: 결핍 & 새 출발 효과 */}
-      <footer className="bg-gray-50 pt-20 pb-12 border-t">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-20">
-            <div className="text-brand-point text-2xl md:text-3xl font-black mb-3 italic tracking-tight">지금바로 당장!</div>
-            <h2 className="text-4xl md:text-6xl font-black mb-8 italic uppercase tracking-tighter">
-              CHANGE YOUR<br/>BODY & LIFE
-            </h2>
-            <p className="text-xl text-gray-600 mb-10 font-bold">
-              오늘의 미룸이 내일의 통증을 만듭니다.<br/>
-              선착순 무료 체험 혜택을 놓치지 마세요.
-            </p>
-            <a href="#" onClick={handleOpenForm} className="btn-primary px-12 py-6 text-xl shadow-brand-point/40 uppercase tracking-widest italic">
-              지금 바로 무료 체험 신청
-            </a>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 pt-12 border-t text-sm font-bold opacity-80 uppercase tracking-tighter">
-            <div>
-              <div className="text-brand-point mb-4 font-black">LOCATIONS</div>
-              <ul className="space-y-4">
-                <li><span className="text-brand-point">송도점</span> 032)834-0401</li>
-                <li><span className="text-brand-point">작전점</span> 032)553-0401</li>
-                <li><span className="text-brand-point">부평점</span> 032)719-3336</li>
-              </ul>
             </div>
-            <div>
-              <div className="text-brand-point mb-4 font-black">HOURS</div>
-              <p>평일 09:00 ~ 23:00</p>
-              <p>토요일 10:00 ~ 18:00</p>
-              <p className="text-xs text-gray-400 mt-2">일요일 공휴일 별도공지</p>
-            </div>
-            <div>
-              <div className="text-brand-point mb-4 font-black">CONTACT</div>
-              <div className="flex gap-4 mb-4">
-                <a href="#" className="hover:text-brand-point bg-white p-2 rounded-full border shadow-sm"><Instagram size={20} /></a>
-                <a href="#" className="hover:text-brand-point bg-white p-2 rounded-full border shadow-sm"><MessageCircle size={20} /></a>
-                <a href="#" className="hover:text-brand-point bg-white p-2 rounded-full border shadow-sm"><Phone size={20} /></a>
-              </div>
-              <p className="text-xs text-gray-400">© 2026 FROMBODY FITNESS. ALL RIGHTS RESERVED.</p>
-            </div>
+            <p className="text-xs text-gray-400">© 2026 FROMBODY FITNESS. ALL RIGHTS RESERVED.</p>
           </div>
         </div>
       </footer>
 
-      {/* Floating CTA Mobile */}
-      <a 
-        href="#" onClick={handleOpenForm} 
-        className="md:hidden fixed bottom-6 right-6 z-[60] bg-brand-point text-white font-black p-4 rounded-full shadow-2xl flex items-center gap-2 group italic uppercase tracking-tighter"
+      <button
+        type="button"
+        aria-label="무료 운동진단 예약하기"
+        onClick={() => openForm()}
+        className="fixed bottom-6 right-6 z-[60] flex items-center gap-2 rounded-full bg-brand-point p-4 font-black text-white shadow-2xl md:hidden"
       >
-        <CreditCard size={20} />
-        무료체험 신청
-      </a>
+        <Activity size={20} />
+        무료 운동진단
+      </button>
 
       <ConsultationModal isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />
     </div>
