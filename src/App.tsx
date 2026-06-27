@@ -126,7 +126,7 @@ const programs = [
   {
     id: "barre",
     title: "바레 클래스",
-    location: "작전점",
+    location: "(작전점)",
     desc: "작전점에서 운영하는 프로그램으로 코어, 자세, 바디라인 관리를 원하는 분께 적합합니다.",
     points: ["발레 동작 기반 저충격 운동", "코어 중심 실루엣 정리", "하루 50분 자기관리"],
     icon: User,
